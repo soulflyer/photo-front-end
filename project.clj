@@ -8,13 +8,19 @@
                  [org.clojure/core.async "0.2.395"]
                  [reagent "0.6.0"]
                  [ring/ring-core "1.5.1"]
-                 [figwheel "0.5.9"]
-                 [cljs-http "0.1.43"]]
+                 [figwheel "0.5.11"]
+                 [com.cemerick/piggieback "0.2.2"]
+                 [cljs-http "0.1.43"]
+                 [cider/cider-nrepl "0.14.0"]]
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-externs "0.1.6"]
             [lein-shell "0.5.0"]
+            [com.cemerick/austin "0.1.6"]
+            [cider/cider-nrepl "0.14.0"]
+            [refactor-nrepl "2.3.0-SNAPSHOT"]
             [lein-figwheel "0.5.9" :exclusions [org.clojure/core.cache]]]
   :source-paths ["src_tools"]
+  :profiles {:dev {:dependencies [[figwheel-sidecar "0.5.11"]]}}
   :aliases {"descjop-help" ["new" "descjop" "help"]
             "descjop-version" ["new" "descjop" "version"]
             "descjop-init" ["do"
@@ -152,4 +158,10 @@
                                                :output-wrapper true}}}}
   :figwheel {:http-server-root "public"
              :ring-handler figwheel-middleware/app
-             :server-port 3449})
+             :server-port 3449
+             :nrepl-middleware ["cider.nrepl/cider-middleware"
+                                "refactor-nrepl.middleware/wrap-refactor"
+                                "cemerick.piggieback/wrap-cljs-repl"]
+             :repl false
+             :nrepl-port 7002})
+;;
