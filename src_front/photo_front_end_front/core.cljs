@@ -17,18 +17,27 @@
   (let [pl (map (fn [a] (str/split a #"/")) @project-list)
         years (set (map first pl))]
     [:div
-     [:ul
+     [:ul#menutree
       (for [year years]
         (let [projects (filter (fn [a] (= year (first a))) pl)
-              months (set (map second projects))]
-          [:li (str year)
-           [:ul
-            (for [month months]
-              (let [mp (filter (fn [a] (= month (second a))) projects)]
-                [:li (str month)
-                 [:ul
-                  (for [project mp]
-                    [:li (str (last project))])]]))]]))]]))
+              months   (set (map second projects))
+              yr       (str year)]
+          ^{:key year} [:li [:label yr]
+                        [:input {:type "checkbox"
+                                 :id yr}]
+               [:ul
+                (for [month months]
+                  (let [mp (filter (fn [a] (= month (second a))) projects)
+                        mo (str month)]
+                    [:li [:label mo]
+                     [:input {:type "checkbox"
+                              :id (str yr mo)}]
+                     [:ul
+                      (for [project mp]
+                        (let [pr (str (last project))]
+                          [:li [:label pr]
+                                 [:input {:type "checkbox"
+                                          :id (str yr mo pr)}]]))]]))]]))]]))
 
 (defn root-component []
   [:div
