@@ -18,3 +18,4 @@ app/prod/js/*
 figwheel_server.log
 .nrepl-port
 .repl/*
+.#*
