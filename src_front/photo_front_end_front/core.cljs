@@ -15,29 +15,34 @@
 
 (defn projects []
   (let [pl (map (fn [a] (str/split a #"/")) @project-list)
-        years (set (map first pl))]
+        years (sort (set (map first pl)))]
     [:div
-     [:ul#menutree
+     [:ol#menutree
       (for [year years]
         (let [projects (filter (fn [a] (= year (first a))) pl)
-              months   (set (map second projects))
+              months   (sort (set (map second projects)))
               yr       (str year)]
-          ^{:key year} [:li [:label yr]
-                        [:input {:type "checkbox"
-                                 :id yr}]
-               [:ul
-                (for [month months]
-                  (let [mp (filter (fn [a] (= month (second a))) projects)
-                        mo (str month)]
-                    [:li [:label mo]
-                     [:input {:type "checkbox"
-                              :id (str yr mo)}]
-                     [:ul
-                      (for [project mp]
-                        (let [pr (str (last project))]
-                          [:li [:label pr]
-                                 [:input {:type "checkbox"
-                                          :id (str yr mo pr)}]]))]]))]]))]]))
+          [:li
+           [:label {:for yr
+                    :class "menu_label"} yr]
+           [:input {:type "checkbox"
+                    :id yr}]
+           [:ol
+            (for [month months]
+              (let [mp (filter (fn [a] (= month (second a))) projects)
+                    mo (str month)]
+                [:li
+                 [:label {:for (str yr mo)
+                          :class "menu_label"} mo]
+                 [:input {:type "checkbox"
+                          :id (str yr mo)}]
+                 [:ol
+                  (for [project mp]
+                    (let [pr (str (last project))]
+                      [:li {:class "page"}
+                       [:label pr]
+                       [:input {:type "checkbox"
+                                :id (str yr mo pr)}]]))]]))]]))]]))
 
 (defn root-component []
   [:div
