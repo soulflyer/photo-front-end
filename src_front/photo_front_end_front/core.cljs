@@ -13,6 +13,24 @@
       ;; (js/console.log (:body response)
       (reset! project-list (reader/read-string (:body response)))))
 
+(defn project-map [project-string]
+  {:year "2017"
+   :month "05"
+   :project "11-Plane"})
+
+(defn project-vector [project-string]
+  [(subs project-string 0 4)
+   (subs project-string 4 6)
+   (subs project-string 6)])
+
+(def project-message (reagent/atom ""))
+(defn open-project [pr]
+  (go (let [[year month project] (project-vector pr)
+            response (<! (http/get
+                           (str "http://localhost:31000/api/open/project/"
+                                year "/" month "/" project )))]
+        (reset! project-message (:body response)))))
+
 (defn projects []
   (let [pl (map (fn [a] (str/split a #"/")) @project-list)
         years (sort (set (map first pl)))]
@@ -38,15 +56,17 @@
                           :id (str yr mo)}]
                  [:ol
                   (for [project mp]
-                    (let [pr (str (last project))]
+                    (let [pr (str (last project))
+                          proj (str yr mo pr)]
                       [:li {:class "page"}
-                       [:label pr]
-                       [:input {:type "checkbox"
-                                :id (str yr mo pr)}]]))]]))]]))]]))
+                       [:input {:type "button"
+                                :value proj
+                                :id proj
+                                :on-click #(open-project proj)}]]))]]))]]))]
+     [:p (str @project-message)]]))
 
 (defn root-component []
   [:div
-   [:h1 (:message @state)]
    [projects]])
 
 (defn mount-root [setting]
