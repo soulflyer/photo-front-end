@@ -60,7 +60,7 @@
                           proj (str yr mo pr)]
                       [:li {:class "page"}
                        [:input {:type "button"
-                                :value proj
+                                :value pr
                                 :id proj
                                 :on-click #(open-project proj)}]]))]]))]]))]
      [:p (str @project-message)]]))

@@ -1,3 +1,7 @@
+#menutree {
+    padding: 0px;
+}
+
 #menutree li {
     list-style: none;          /* all list item li dots invisible */
 }
