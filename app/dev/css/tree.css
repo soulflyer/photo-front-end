@@ -4,6 +4,7 @@
 
 #menutree li {
     list-style: none;          /* all list item li dots invisible */
+    overflow: hidden;
 }
 
 li input[type=checkbox] {
