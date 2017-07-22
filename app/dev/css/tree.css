@@ -33,12 +33,17 @@ li input[type=checkbox] ~ ol
 
 li input[type=checkbox]:checked ~ ol
 {
-    background: url(../images/down.png) 0px 0 no-repeat;
+ background: url(../images/down.png) 0px 0 no-repeat;
+ }
+
+input[type=button] {
+    background: none;
+    border-style: none;
 }
 
-input:focus + .menu_label {
-
+input:focus + .menu_label, input[type=button]:focus {
     background: #aed4fb;
+    outline-style: none;
     padding-right: 10000px;
     margin-right: -10000px;
 }
