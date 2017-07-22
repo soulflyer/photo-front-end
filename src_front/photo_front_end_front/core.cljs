@@ -41,19 +41,19 @@
               months   (sort (set (map second projects)))
               yr       (str year)]
           [:li
-           [:label {:for yr
-                    :class "menu_label"} yr]
            [:input {:type "checkbox"
                     :id yr}]
+           [:label {:for yr
+                    :class "menu_label"} yr]
            [:ol
             (for [month months]
               (let [mp (filter (fn [a] (= month (second a))) projects)
                     mo (str month)]
                 [:li
-                 [:label {:for (str yr mo)
-                          :class "menu_label"} mo]
                  [:input {:type "checkbox"
                           :id (str yr mo)}]
+                 [:label {:for (str yr mo)
+                          :class "menu_label"} mo]
                  [:ol
                   (for [project mp]
                     (let [pr (str (last project))
