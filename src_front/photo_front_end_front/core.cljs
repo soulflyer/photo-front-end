@@ -34,7 +34,7 @@
 (defn projects []
   (let [pl (map (fn [a] (str/split a #"/")) @project-list)
         years (sort (set (map first pl)))]
-    [:div
+    [:div#projects
      [:ol#menutree
       (for [year years]
         (let [projects (filter (fn [a] (= year (first a))) pl)
@@ -62,12 +62,21 @@
                        [:input {:type "button"
                                 :value pr
                                 :id proj
-                                :on-click #(open-project proj)}]]))]]))]]))]
-     [:p (str @project-message)]]))
+                                :on-click #(open-project proj)}]]))]]))]]))]]))
+
+(defn pictures []
+  [:div#pictures
+   [:h1 "Pictures go here"]])
+
+(defn messages []
+  [:div#messages
+   [:p (str @project-message)]])
 
 (defn root-component []
-  [:div
-   [projects]])
+  [:div#root
+   [projects]
+   [pictures]
+   [messages]])
 
 (defn mount-root [setting]
   (reagent/render [root-component]

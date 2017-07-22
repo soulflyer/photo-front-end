@@ -1,0 +1,17 @@
+#projects {
+    overflow: auto;
+    width: 200px;
+}
+
+#pictures {
+    flex: 1;
+}
+
+#messages {
+    clear: both;
+}
+
+#root {
+    display: flex;
+    height: 98vh;
+}
