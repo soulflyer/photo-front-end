@@ -12,6 +12,7 @@ li .menu_label + input[type=checkbox] {
 
 li .menu_label {
     cursor: pointer;        /* cursor changes when you mouse over this class */
+    padding-left: 1em;
 }                         /* could add the many user-select: none; commands here */
 
 li .menu_label + input[type=checkbox] + ol > li
@@ -22,4 +23,22 @@ li .menu_label + input[type=checkbox] + ol > li
 li .menu_label + input[type=checkbox]:checked + ol > li
 {
     display: block;         /* display submenu on click */
+}
+
+li .menu_label + input[type=checkbox] + ol
+{
+    background: url(../images/right.png) 0px 0 no-repeat;
+    margin: -1.25em 0 0 0;
+    padding: 1.25em 0 0 1em;
+ }
+
+li .menu_label + input[type=checkbox]:checked + ol
+{
+    background: url(../images/down.png) 0px 0 no-repeat;
+}
+
+:focus
+{
+    background: green;
+    outline: 4px solid red;
 }
