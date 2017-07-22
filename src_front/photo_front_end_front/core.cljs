@@ -23,7 +23,7 @@
    (subs project-string 4 6)
    (subs project-string 6)])
 
-(def project-message (reagent/atom ""))
+(def project-message (reagent/atom "-"))
 (defn open-project [pr]
   (go (let [[year month project] (project-vector pr)
             response (<! (http/get

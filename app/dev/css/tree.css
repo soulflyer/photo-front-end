@@ -4,7 +4,11 @@
 
 #menutree li {
     list-style: none;          /* all list item li dots invisible */
-    overflow: hidden;
+    font-size:0.9rem;
+}
+
+#menutree input[type=button] {
+    font-size:0.9rem;
 }
 
 li input[type=checkbox] {
@@ -43,7 +47,7 @@ input[type=button] {
 }
 
 input:focus + .menu_label, input[type=button]:focus {
-    background: #aed4fb;
+    background: darkgray;
     outline-style: none;
     padding-right: 10000px;
     margin-right: -10000px;

@@ -1,6 +1,15 @@
+html {
+    background:darkgrey;
+}
+body {
+    margin:5px;
+    background:lightgray;
+}
+
 #projects {
     overflow: auto;
     width: 200px;
+    border-right:5px solid darkgrey;
 }
 
 #pictures {
@@ -8,10 +17,17 @@
 }
 
 #messages {
-    clear: both;
+    position:absolute;
+    bottom:0;
+    background:darkgray;
+    width:100%;
+}
+#messages p {
+    margin:2px;
 }
 
 #root {
     display: flex;
     height: 98vh;
+    font-family: system-ui;
 }
