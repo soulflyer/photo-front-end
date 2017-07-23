@@ -14,6 +14,8 @@ body {
 
 #pictures {
     flex: 1;
+    background: #303030;
+    colour:darkgrey;
 }
 
 #messages {
