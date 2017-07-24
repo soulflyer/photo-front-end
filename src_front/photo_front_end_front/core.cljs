@@ -1,72 +1,18 @@
 (ns photo-front-end-front.core
-  (:require-macros [cljs.core.async.macros :refer [go]])
-  (:require  [reagent.core :as reagent :refer [atom]]
-             [cljs-http.client :as http]
-             [cljs.core.async :refer [<!]]
-             [cljs.reader :as reader]
-             [clojure.string :as str]))
+  (:require [photo-front-end-front.api
+             :refer
+             [load-picture-list load-project-list picture-list project-message]]
+            [photo-front-end-front.projects :refer [projects]]
+            [reagent.core :as reagent :refer [atom]]))
 
-(defonce state (atom {:message "Photo Projects"}))
-
-(def project-list (reagent/atom {}))
-(go (let [response (<! (http/get "http://localhost:31000/api/projects"))]
-      ;; (js/console.log (:body response)
-      (reset! project-list (reader/read-string (:body response)))))
-
-(defn project-map [project-string]
-  {:year "2017"
-   :month "05"
-   :project "11-Plane"})
-
-(defn project-vector [project-string]
-  [(subs project-string 0 4)
-   (subs project-string 4 6)
-   (subs project-string 6)])
-
-(def project-message (reagent/atom "-"))
-(defn open-project [pr]
-  (go (let [[year month project] (project-vector pr)
-            response (<! (http/get
-                           (str "http://localhost:31000/api/open/project/"
-                                year "/" month "/" project )))]
-        (reset! project-message (:body response)))))
-
-(defn projects []
-  (let [pl (map (fn [a] (str/split a #"/")) @project-list)
-        years (sort (set (map first pl)))]
-    [:div#projects
-     [:ol#menutree
-      (for [year years]
-        (let [projects (filter (fn [a] (= year (first a))) pl)
-              months   (sort (set (map second projects)))
-              yr       (str year)]
-          [:li
-           [:input {:type "checkbox"
-                    :id yr}]
-           [:label {:for yr
-                    :class "menu_label"} yr]
-           [:ol
-            (for [month months]
-              (let [mp (filter (fn [a] (= month (second a))) projects)
-                    mo (str month)]
-                [:li
-                 [:input {:type "checkbox"
-                          :id (str yr mo)}]
-                 [:label {:for (str yr mo)
-                          :class "menu_label"} mo]
-                 [:ol
-                  (for [project mp]
-                    (let [pr (str (last project))
-                          proj (str yr mo pr)]
-                      [:li {:class "page"}
-                       [:input {:type "button"
-                                :value pr
-                                :id proj
-                                :on-click #(open-project proj)}]]))]]))]]))]]))
+(load-project-list)
+(load-picture-list "2017" "05" "04-Square")
 
 (defn pictures []
-  [:div#pictures
-   [:h1 "Pictures go here"]])
+  (let [pl @picture-list]
+    [:div#pictures
+     (for [pic pl]
+       [:img {:src (str "/Users/iain/Pictures/Published/thumbs/" pic)}])]))
 
 (defn messages []
   [:div#messages
