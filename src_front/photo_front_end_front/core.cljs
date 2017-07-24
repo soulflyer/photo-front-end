@@ -17,7 +17,9 @@
   (let [pl @picture-list]
     [:div#pictures
      (for [pic pl]
-       [:img {:src (str @thumbnail-directory "/" pic)}])]))
+       [:div.img-container
+        [:img
+         {:src (str @thumbnail-directory "/" pic)}]])]))
 
 (defn messages []
   [:div#messages

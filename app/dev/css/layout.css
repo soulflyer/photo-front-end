@@ -14,15 +14,29 @@ body {
 }
 
 #pictures {
+    display:flex;
+    flex-flow:row wrap;
+    align-content:flex-start;
+    justify-content:flex-start;
     flex: 1;
     background: #303030;
-    colour:darkgrey;
+    color:darkgrey;
     overflow:auto;
-    height: 97%;
+    margin-bottom:10px /* keeps the highlighted item onscreen when scrolling to the bottom*/
 }
 
-#pictures img {
-    margin:8px 0px 0px 8px;
+#pictures .img-container {
+    margin:10px 0px 10px 0px;
+    width:175px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    max-height: 175px;
+}
+
+#pictures .img-container img {
+    margin: 0 auto;
+    display:block;
 }
 
 #messages {
