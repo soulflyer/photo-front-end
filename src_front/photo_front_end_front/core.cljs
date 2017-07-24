@@ -1,18 +1,23 @@
 (ns photo-front-end-front.core
   (:require [photo-front-end-front.api
-             :refer
-             [load-picture-list load-project-list picture-list project-message]]
+             :refer [load-picture-list
+                     load-project-list
+                     load-preferences
+                     picture-list
+                     thumbnail-directory
+                     project-message]]
             [photo-front-end-front.projects :refer [projects]]
             [reagent.core :as reagent :refer [atom]]))
 
 (load-project-list)
 (load-picture-list "2017" "05" "04-Square")
+(load-preferences)
 
 (defn pictures []
   (let [pl @picture-list]
     [:div#pictures
      (for [pic pl]
-       [:img {:src (str "/Users/iain/Pictures/Published/thumbs/" pic)}])]))
+       [:img {:src (str @thumbnail-directory "/" pic)}])]))
 
 (defn messages []
   [:div#messages

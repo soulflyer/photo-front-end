@@ -8,6 +8,8 @@
 (def project-list (reagent/atom {}))
 (def picture-list (reagent/atom {}))
 (def project-message (reagent/atom "-"))
+(def thumbnail-directory (reagent/atom ""))
+
 (def api-root "http://localhost:31000/api")
 
 (defn load-picture-list [yr mo pr]
@@ -19,6 +21,11 @@
   (go
     (let [project-response (<! (http/get (str api-root "/projects")))]
       (reset! project-list (reader/read-string (:body project-response))))))
+
+(defn load-preferences []
+  (go
+    (let [response (<! (http/get (str api-root "/preferences/thumbnail-directory")))]
+      (reset! thumbnail-directory (:body response)))))
 
 (defn open-project [yr mo pr]
   (go

@@ -9,6 +9,7 @@ body {
 #projects {
     overflow: auto;
     width: 200px;
+    height:98%;
     border-right:5px solid darkgrey;
 }
 
@@ -16,13 +17,19 @@ body {
     flex: 1;
     background: #303030;
     colour:darkgrey;
+    overflow:auto;
+    height: 97%;
+}
+
+#pictures img {
+    margin:8px 0px 0px 8px;
 }
 
 #messages {
     position:absolute;
     bottom:0;
     background:darkgray;
-    width:100%;
+    width:99.5%;
 }
 #messages p {
     margin:2px;

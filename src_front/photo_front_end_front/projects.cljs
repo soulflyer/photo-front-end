@@ -1,6 +1,8 @@
 (ns photo-front-end-front.projects
   (:require [clojure.string :as str]
-            [photo-front-end-front.api :refer [open-project project-list]]))
+            [photo-front-end-front.api :refer [open-project
+                                               project-list
+                                               load-picture-list]]))
 
 (defn projects []
   (let [pl (map (fn [a] (str/split a #"/")) @project-list)
@@ -33,4 +35,5 @@
                        [:input {:type "button"
                                 :value pr
                                 :id proj
+                                :on-focus #(load-picture-list yr mo pr)
                                 :on-click #(open-project yr mo pr)}]]))]]))]]))]]))
