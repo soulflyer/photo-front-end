@@ -7,6 +7,7 @@
                      thumbnail-directory
                      project-message]]
             [photo-front-end-front.projects :refer [projects]]
+            [photo-front-end-front.helpers :refer [image-id]]
             [reagent.core :as reagent :refer [atom]]))
 
 (load-project-list)
@@ -18,8 +19,12 @@
     [:div#pictures
      (for [pic pl]
        [:div.img-container
-        [:img
-         {:src (str @thumbnail-directory "/" pic)}]])]))
+        [:input {:type "checkbox"
+                 :id (image-id pic)}]
+        [:label
+         {:for (image-id pic)}
+         [:img
+          {:src (str @thumbnail-directory "/" pic)}]]])]))
 
 (defn messages []
   [:div#messages

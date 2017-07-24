@@ -1,0 +1,21 @@
+#pictures .img-container input[type=checkbox] {
+    opacity: 0;             /* checkboxes invisible and use no space */
+}                        /* display: none; is better but fails in ie8 */
+
+#pictures .img-container {
+    cursor: pointer;
+}
+
+#pictures .img-container input[type=checkbox] ~ label
+{
+    border: solid #303030;
+}
+
+#pictures .img-container input:focus + label {
+    border-bottom: solid lightblue;
+}
+
+#pictures .img-container input[type=checkbox]:checked ~ label
+{
+    border: solid darkgrey;
+}
