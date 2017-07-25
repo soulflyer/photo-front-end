@@ -6,16 +6,21 @@
     cursor: pointer;
 }
 
+#pictures .img-container input[type=checkbox] ~ label img,
 #pictures .img-container input[type=checkbox] ~ label
 {
     border: solid #303030;
 }
 
-#pictures .img-container input:focus + label {
-    border-bottom: solid lightblue;
+#pictures .img-container input[type=checkbox]:checked ~ label img
+{
+    border: solid lightblue;
 }
 
-#pictures .img-container input[type=checkbox]:checked ~ label
-{
+#pictures .img-container input:focus + label {
+    border: solid lightblue;
+}
+
+#pictures .img-container input:focus + label img {
     border: solid darkgrey;
 }

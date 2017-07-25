@@ -13,6 +13,7 @@
 (def api-root "http://localhost:31000/api")
 
 (defn load-picture-list [yr mo pr]
+  (reset! picture-list {})
   (go
     (let [response (<! (http/get (str api-root "/project/" yr "/" mo "/" pr)))]
       (reset! picture-list (reader/read-string (:body response))))))
