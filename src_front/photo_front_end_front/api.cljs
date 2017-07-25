@@ -16,7 +16,7 @@
   (reset! picture-list {})
   (go
     (let [response (<! (http/get (str api-root "/project/" yr "/" mo "/" pr)))]
-      (reset! picture-list (reader/read-string (:body response))))))
+      (reset! picture-list (map #(hash-map :pic % :selected nil) (reader/read-string (:body response)))))))
 
 (defn load-project-list []
   (go

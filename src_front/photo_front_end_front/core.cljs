@@ -15,7 +15,7 @@
 (load-preferences)
 
 (defn pictures []
-  (let [pl @picture-list]
+  (let [pl (map :pic @picture-list)]
     [:div#pictures
      (for [pic pl]
        [:div.img-container
