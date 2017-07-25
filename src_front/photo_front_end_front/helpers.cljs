@@ -31,3 +31,8 @@
         pathid (reduce str (.split path "/"))
         img  (version-name filepath)]
     (str pathid img)))
+
+(defn selected
+  "returns the list of images currently selected"
+  [picture-list]
+  (keys (filter last picture-list)))
