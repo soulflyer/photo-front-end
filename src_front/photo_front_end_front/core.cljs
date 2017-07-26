@@ -37,8 +37,9 @@
 
 (defn root-component []
   [:div#root
-   [projects]
-   [pictures]
+   [:div#top
+    [projects]
+    [pictures]]
    [messages]])
 
 (defn mount-root [setting]

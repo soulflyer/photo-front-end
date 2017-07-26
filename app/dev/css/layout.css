@@ -6,10 +6,19 @@ body {
     background:lightgray;
 }
 
+#root {
+    font-family: system-ui;
+}
+
+#top {
+    display: flex;
+    height: 98vh;
+}
+
 #projects {
     overflow: auto;
     width: 200px;
-    height:98%;
+    margin-bottom: 22px;
     border-right:5px solid darkgrey;
 }
 
@@ -22,7 +31,7 @@ body {
     background: #303030;
     color:darkgrey;
     overflow:auto;
-    margin-bottom:10px /* keeps the highlighted item onscreen when scrolling to the bottom*/
+    margin-bottom:22px /* keeps the highlighted item onscreen when scrolling to the bottom*/
 }
 
 #pictures .img-container {
@@ -44,13 +53,9 @@ body {
     bottom:0;
     background:darkgray;
     width:99.5%;
-}
-#messages p {
-    margin:2px;
+    height:34px;
 }
 
-#root {
-    display: flex;
-    height: 98vh;
-    font-family: system-ui;
+#messages p {
+    margin:4px;
 }
