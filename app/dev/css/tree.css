@@ -10,44 +10,40 @@
 
 #menutree input[type=button] {
     font-size:0.9rem;
+    background: none;
+    border-style: none;
 }
-
-li input[type=checkbox] {
+#menutree li input[type=checkbox] {
     opacity: 0;             /* checkboxes invisible and use no space */
 }                        /* display: none; is better but fails in ie8 */
-
-li .menu_label {
+#menutree li .menu_label {
     cursor: pointer;
 }
-
-li input[type=checkbox] ~ ol > li
+#menutree li input[type=checkbox] ~ ol > li
 {
     display: none;         /* prevents sublists below unchecked labels from displaying */
 }
-
-li input[type=checkbox]:checked ~ ol > li
+#menutree li input[type=checkbox]:checked ~ ol > li
 {
     display: block;         /* display submenu on click */
 }
-
-li input[type=checkbox] ~ ol
+#menutree li input[type=checkbox] ~ ol
 {
     background: url(../images/right.png) 0px 0 no-repeat;
     margin: -1.25em 0 0 0;
     padding: 1.25em 0 0 1em;
  }
-
-li input[type=checkbox]:checked ~ ol
+#menutree li input[type=checkbox]:checked ~ ol
 {
  background: url(../images/down.png) 0px 0 no-repeat;
  }
 
-input[type=button] {
-    background: none;
-    border-style: none;
-}
+/* input[type=button] { */
+/*     background: none; */
+/*     border-style: none; */
+/* } */
 
-input:focus + .menu_label, input[type=button]:focus {
+#menutree input:focus + .menu_label, #menutree input[type=button]:focus {
     background: darkgray;
     outline-style: none;
     padding-right: 10000px;

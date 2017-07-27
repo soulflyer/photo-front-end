@@ -1,4 +1,5 @@
-(ns photo-front-end-front.helpers)
+(ns photo-front-end-front.helpers
+  (:require [photo-front-end-front.api :refer [open-project]]))
 
 (defn project-vector [project-string]
   [(subs project-string 0 4)

@@ -2,7 +2,9 @@
   (:require [cljs-http.client :as http]
             [cljs.core.async :refer [<!]]
             [cljs.reader :as reader]
-            [reagent.core :as reagent :refer [atom]])
+            [reagent.core :as reagent :refer [atom]]
+            [cemerick.url :refer [url-encode]]
+            [photo-front-end-front.helpers :refer [selected]])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
 (def project-list (reagent/atom {}))
@@ -32,3 +34,23 @@
   (go
     (let [response (<! (http/get (str api-root "/open/project/" yr "/" mo "/" pr)))]
       (reset! project-message (:body response)))))
+
+(defn export-json
+  "sends the list of selected pictures to the api for export as json"
+  []
+  (go
+    (let [response (<!
+                     (http/get
+                       (str api-root "/build/json/Alpha/testfile/"
+                            (url-encode
+                              (str "\""
+                                   (reduce
+                                     str
+                                     (interpose " " (selected @picture-list)))
+                                   "\"")))))]
+      (reset! project-message (:body response)))))
+
+(defn open-external
+  "opens the selected pictures in an external viewer"
+  []
+  "open external")

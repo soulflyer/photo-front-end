@@ -12,6 +12,7 @@
                  [com.cemerick/piggieback "0.2.2"]
                  [cljs-http "0.1.43"]
                  [cider/cider-nrepl "0.14.0"]
+                 [com.cemerick/url "0.1.1"]
                  [image-lib "0.2.1-SNAPSHOT"]]
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-externs "0.1.6"]

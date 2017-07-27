@@ -5,7 +5,9 @@
                      load-preferences
                      picture-list
                      thumbnail-directory
-                     project-message]]
+                     project-message
+                     export-json
+                     open-external]]
             [photo-front-end-front.projects :refer [projects]]
             [photo-front-end-front.helpers :refer [image-id
                                                    selected]]
@@ -33,7 +35,16 @@
 
 (defn messages []
   [:div#messages
-   [:p (str @project-message)]])
+   [:p (str @project-message)]
+   [:div#buttons
+    [:input {:type "button"
+             :id "open-external"
+             :value "Open"
+             :on-click #(open-external) }]
+    [:input {:type "button"
+             :id "json-export"
+             :value "Export JSON"
+             :on-click #(export-json)}]]])
 
 (defn root-component []
   [:div#root
