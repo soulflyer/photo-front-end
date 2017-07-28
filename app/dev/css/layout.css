@@ -1,9 +1,10 @@
 html {
-    background:darkgrey;
-}
+      background:darkgrey;
+      }
 body {
+    height:auto;
     margin:5px;
-    background:lightgray;
+    background-color:lightgray;
 }
 
 #root {
@@ -11,15 +12,21 @@ body {
 }
 
 #top {
-    display: flex;
-    height: 98vh;
+    /* display: flex; */
+    /* height: 98vh; */
 }
 
 #projects {
     overflow: auto;
-    width: 200px;
-    margin-bottom: 22px;
-    border-right:5px solid darkgrey;
+}
+
+#projects label{
+    font-weight:500;
+    margin: 0px 0px 0px 3px;
+}
+
+::-webkit-scrollbar {
+    width:0px;
 }
 
 #pictures {
@@ -31,7 +38,6 @@ body {
     background: #303030;
     color:darkgrey;
     overflow:auto;
-    margin-bottom:22px /* keeps the highlighted item onscreen when scrolling to the bottom*/
 }
 
 #pictures .img-container {

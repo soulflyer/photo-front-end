@@ -2,13 +2,18 @@
   (:require [clojure.string :as str]
             [photo-front-end-front.api :refer [open-project
                                                project-list
-                                               load-picture-list]]))
+                                               load-picture-list]]
+            [re-com.core :as re]))
 
 (defn projects []
   (let [pl (map (fn [a] (str/split a #"/")) @project-list)
         years (sort (set (map first pl)))]
-    [:div#projects
-     [:ol#menutree
+    [re/scroller
+     :attr {:id "projects"}
+     :v-scroll :auto
+     :h-scroll :off
+     :height "95vh"
+     :child [:ol#menutree
       (for [year years]
         (let [projects (filter (fn [a] (= year (first a))) pl)
               months   (sort (set (map second projects)))

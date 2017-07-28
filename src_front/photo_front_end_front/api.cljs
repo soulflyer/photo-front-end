@@ -35,6 +35,11 @@
     (let [response (<! (http/get (str api-root "/open/project/" yr "/" mo "/" pr)))]
       (reset! project-message (:body response)))))
 
+(defn massage-picture-list
+  "turns a list of pictures into a single string for inclusion in a url"
+  [pic-list]
+  (url-encode (str "\"" (reduce str (interpose " " pic-list)) "\"")))
+
 (defn export-json
   "sends the list of selected pictures to the api for export as json"
   []
@@ -42,12 +47,7 @@
     (let [response (<!
                      (http/get
                        (str api-root "/build/json/Alpha/testfile/"
-                            (url-encode
-                              (str "\""
-                                   (reduce
-                                     str
-                                     (interpose " " (selected @picture-list)))
-                                   "\"")))))]
+                            (massage-picture-list (selected @picture-list)))))]
       (reset! project-message (:body response)))))
 
 (defn open-external
