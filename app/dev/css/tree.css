@@ -35,13 +35,8 @@
  }
 #menutree li input[type=checkbox]:checked ~ ol
 {
- background: url(../images/down.png) 0px 0 no-repeat;
- }
-
-/* input[type=button] { */
-/*     background: none; */
-/*     border-style: none; */
-/* } */
+    background: url(../images/down.png) 0px 0 no-repeat;
+}
 
 #menutree input:focus + .menu_label, #menutree input[type=button]:focus {
     background: darkgray;

@@ -1,8 +1,23 @@
 #messages {
     display:flex;
     justify-content:space-between;
+    background:darkgray;
+    height:34px;
 }
 
 #buttons {
     justify-content:flex-end;
+    padding-top:4px;
+}
+
+#messages p {
+    margin:4px;
+}
+
+#messages #buttons {
+    display:flex;
+}
+
+#messages #buttons input[type="button"] {
+    height:100%;
 }

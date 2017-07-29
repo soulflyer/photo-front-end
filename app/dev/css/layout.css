@@ -1,14 +1,20 @@
 html {
       background:darkgrey;
-      }
+}
+
 body {
-    height:auto;
-    margin:5px;
     background-color:lightgray;
+}
+
+#app {
+    height:100%;
+    background:darkgrey;
 }
 
 #root {
     font-family: system-ui;
+    height:100%;
+    padding:5px;
 }
 
 #top {
@@ -17,7 +23,7 @@ body {
 }
 
 #projects {
-    overflow: auto;
+    background:lightgrey;
 }
 
 #projects label{
@@ -27,41 +33,4 @@ body {
 
 ::-webkit-scrollbar {
     width:0px;
-}
-
-#pictures {
-    display:flex;
-    flex-flow:row wrap;
-    align-content:flex-start;
-    justify-content:flex-start;
-    flex: 1;
-    background: #303030;
-    color:darkgrey;
-    overflow:auto;
-}
-
-#pictures .img-container {
-    margin:10px 0px 10px 0px;
-    width:175px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    max-height: 175px;
-}
-
-#pictures .img-container img {
-    margin: 0 auto;
-    display:block;
-}
-
-#messages {
-    position:absolute;
-    bottom:0;
-    background:darkgray;
-    width:99.5%;
-    height:34px;
-}
-
-#messages p {
-    margin:4px;
 }
