@@ -4,52 +4,36 @@
 
 (defn dialog-markup
   [form-data process-ok process-cancel]
-  [re/border
-   :border "1px solid #eee"
-   :child  [re/v-box
-            :padding  "10px"
-            :style    {:background-color "cornsilk"}
-            :children [[re/title :label "Welcome to MI6. Please log in" :level :level2]
-                       [re/v-box
-                        :class    "form-group"
-                        :children [[:label {:for "pf-email"} "Email address"]
-                                   [re/input-text
-                                    :model       (:email @form-data)
-                                    :on-change   #(swap! form-data assoc :email %)
-                                    :placeholder "Enter email"
-                                    :class       "form-control"
-                                    :attr        {:id "pf-email"}]]]
-                       [re/v-box
-                        :class    "form-group"
-                        :children [[:label {:for "pf-password"} "Password"]
-                                   [re/input-text
-                                    :model       (:password @form-data)
-                                    :on-change   #(swap! form-data assoc :password %)
-                                    :placeholder "Enter password"
-                                    :class       "form-control"
-                                    :attr        {:id "pf-password" :type "password"}]]]
-                       [re/checkbox
-                        :label     "Forget me"
-                        :model     (:remember-me @form-data)
-                        :on-change #(swap! form-data assoc :remember-me %)]
-                       [re/line :color "#ddd" :style {:margin "10px 0 10px"}]
-                       [re/h-box
-                        :gap      "12px"
-                        :children [[re/button
-                                    :label    "Sign in"
-                                    :class    "btn-primary"
-                                    :on-click process-ok]
-                                   [re/button
-                                    :label    "Cancel"
-                                    :on-click process-cancel]]]]]])
+  [:div#modal
+   [:h2 "Export Json"]
+   [:label {:for "dive-centre"} "Dive centre"]
+   [:input {:type "text"
+            :value (:centre @form-data)
+            :id "dive-centre"
+            :on-change #(swap! form-data assoc :centre)}]
+   [:label {:for "pf-password"} "File name"]
+   [:input {:type "text"
+            :value (:filename @form-data)
+            :id "file-name"
+            :on-change #(swap! form-data assoc :filename)}]
+   [:div#buttons
+    [:input {:type     "button"
+             :value    "Export JSON"
+             :id       "export-json-button"
+             :class    "modal-button"
+             :on-click process-ok}]
+    [:input {:type     "button"
+             :value    "Cancel"
+             :id       "cancel-button"
+             :class    "modal-button"
+             :on-click process-cancel}]]])
 
 (defn export-json
   "Create a button to test the modal component for modal dialogs"
   []
   (let [show?       (reagent/atom false)
-        form-data      (reagent/atom {:email       "james.bond.007@sis.gov.uk"
-                                      :password    "abc123"
-                                      :remember-me true})
+        form-data      (reagent/atom {:centre      "Alpha"
+                                      :filename    "testtttttt"})
         save-form-data (reagent/atom nil)
         process-ok     (fn [event]
                          (reset! show? false)
@@ -62,18 +46,18 @@
                          (println "Cancelled form data: " @form-data)
                          false)]
     (fn []
-      [re/v-box
-       :children [[:input {:type "button"
-                  :id "json-export"
-                  :value "Export JSON"
-                  :on-click #(do
-                               (reset! save-form-data @form-data)
-                               (reset! show? true))}]
-         (when @show? [re/modal-panel
-                       :backdrop-color   "grey"
-                       :backdrop-opacity 0.4
-                       :style            {:font-family "Consolas"}
-                       :child            [dialog-markup
-                                          form-data
-                                          process-ok
-                                          process-cancel]])]])))
+      [:div
+        [:input {:type "button"
+                 :id "json-export"
+                 :value "Export JSON"
+                 :on-click #(do
+                              (reset! save-form-data @form-data)
+                              (reset! show? true))}]
+       (when @show? [re/modal-panel
+                     :backdrop-color   "grey"
+                     :backdrop-opacity 0.6
+                     :backdrop-on-click process-cancel
+                     :child            [dialog-markup
+                                        form-data
+                                        process-ok
+                                        process-cancel]])])))
