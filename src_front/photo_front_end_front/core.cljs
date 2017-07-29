@@ -9,7 +9,7 @@
                      export-json
                      open-external]]
             [photo-front-end-front.projects :refer [projects]]
-            [photo-front-end-front.export-json :refer [export-json]]
+            [photo-front-end-front.export-json :refer [export-json-button]]
             [photo-front-end-front.helpers :refer [image-id
                                                    selected]]
             [reagent.core :as reagent :refer [atom]]
@@ -45,16 +45,11 @@
   [:div#messages
    [:p (str @project-message)]
    [:div#buttons
-    [export-json]
+    [export-json-button]
     [:input {:type "button"
              :id "open-external"
              :value "Open"
-             :on-click #(open-external) }]
-    [:input {:type "button"
-             :id "json-export"
-             :value "Export JSON"
-             :on-click #(export-json)}]
-    ]])
+             :on-click #(open-external)}]]])
 
 ;; (defn root-component []
 ;;   [:div#root

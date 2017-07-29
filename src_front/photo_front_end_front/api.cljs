@@ -42,11 +42,11 @@
 
 (defn export-json
   "sends the list of selected pictures to the api for export as json"
-  []
+  [divecentre filename]
   (go
     (let [response (<!
                      (http/get
-                       (str api-root "/build/json/Alpha/testfile/"
+                       (str api-root "/build/json/" divecentre "/" filename "/"
                             (massage-picture-list (selected @picture-list)))))]
       (reset! project-message (:body response)))))
 

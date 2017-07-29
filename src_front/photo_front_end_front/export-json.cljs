@@ -1,21 +1,23 @@
 (ns photo-front-end-front.export-json
   (:require [reagent.core :as reagent :refer [atom]]
-            [re-com.core :as re]))
+            [re-com.core :as re]
+            [photo-front-end-front.api :refer [project-message
+                                               export-json]]))
 
 (defn dialog-markup
   [form-data process-ok process-cancel]
   [:div#modal
    [:h2 "Export Json"]
    [:label {:for "dive-centre"} "Dive centre"]
-   [:input {:type "text"
-            :value (:centre @form-data)
-            :id "dive-centre"
-            :on-change #(swap! form-data assoc :centre)}]
+   [re/input-text
+    :model (:centre @form-data)
+    :id "dive-centre"
+    :on-change #(swap! form-data assoc :centre %)]
    [:label {:for "pf-password"} "File name"]
-   [:input {:type "text"
-            :value (:filename @form-data)
-            :id "file-name"
-            :on-change #(swap! form-data assoc :filename)}]
+   [re/input-text
+    :model (:filename @form-data)
+    :id "file-name"
+    :on-change #(swap! form-data assoc :filename %)]
    [:div#buttons
     [:input {:type     "button"
              :value    "Export JSON"
@@ -28,7 +30,7 @@
              :class    "modal-button"
              :on-click process-cancel}]]])
 
-(defn export-json
+(defn export-json-button
   "Create a button to test the modal component for modal dialogs"
   []
   (let [show?       (reagent/atom false)
@@ -37,8 +39,10 @@
         save-form-data (reagent/atom nil)
         process-ok     (fn [event]
                          (reset! show? false)
-                         (println "Submitted form data: " @form-data)
+                         (println "Submitted form data: " (:centre @form-data) " " (:filename @form-data))
                          ;; ***** PROCESS THE RETURNED DATA HERE
+                         (export-json (:centre @form-data) (:filename @form-data))
+                         ;; (reset! project-message (str "Wrote file: "(:filename @form-data)))
                          false) ;; Prevent default "GET" form submission (if used)
         process-cancel (fn [event]
                          (reset! form-data @save-form-data)
