@@ -1,0 +1,20 @@
+#modal {
+    padding:10px;
+    border-radius:2px;
+    background-color:lightgrey;
+}
+
+#modal h2 {
+    margin-top:5px;
+    margin-bottom:0px;
+}
+
+#modal #buttons {
+    display:flex;
+    justify-content:space-between;
+    padding-top:16px;
+}
+
+#modal label {
+    margin-top:15px;
+}

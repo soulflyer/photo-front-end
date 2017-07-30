@@ -58,6 +58,7 @@
                               (reset! save-form-data @form-data)
                               (reset! show? true))}]
        (when @show? [re/modal-panel
+                     :wrap-nicely? false
                      :backdrop-color   "grey"
                      :backdrop-opacity 0.6
                      :backdrop-on-click process-cancel
