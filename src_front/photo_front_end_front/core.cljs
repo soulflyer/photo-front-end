@@ -1,30 +1,21 @@
 (ns photo-front-end-front.core
   (:require [photo-front-end-front.api
              :refer
-             [load-picture-list
-              load-preferences
-              load-project-list
-              open-external
-              project-message]]
-            [photo-front-end-front.export-json :refer [export-json-button]]
+             [load-picture-list load-preferences load-project-list]]
+            [photo-front-end-front.messages :refer [messages]]
             [photo-front-end-front.pictures :refer [pictures]]
             [photo-front-end-front.projects :refer [projects]]
             [re-com.core :as re]
-            [reagent.core :as reagent]))
+            [reagent.core :as reagent]
+            [zyzanie.core :as z]
+            [zyzanie.notification :as zn]))
 
 (load-project-list)
 (load-picture-list "2017" "05" "04-Square")
 (load-preferences)
 
-(defn messages []
-  [:div#messages
-   [:p (str @project-message)]
-   [:div#buttons
-    [export-json-button]
-    [:input {:type "button"
-             :id "open-external"
-             :value "Open"
-             :on-click #(open-external)}]]])
+(z/global-set-key "g" #(js/alert "Are you a global person?"))
+
 
 (defn root-component []
   [:div#root
