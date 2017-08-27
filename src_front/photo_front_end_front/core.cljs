@@ -33,8 +33,10 @@
 
 (defn init! [setting]
   (mount-root setting)
-  (z/global-set-key "l" #(js/alert "Are you a global person?"))
+  ;;(z/global-set-key "l" #(js/alert "Are you a global person?"))
   ;;(z/local-set-key "l" #(js/alert "Local!") (domina/by-id "app"))
 
-  (z/global-set-key "j" #(do (reset! json/save-form-data @json/form-data)
-                             (reset! json/show? true))))
+
+  ;; (z/global-set-key "j" #(do (reset! json/save-form-data @json/form-data)
+  ;;                            (reset! json/show? true)))
+  )

@@ -4,7 +4,7 @@
             [re-com.core :as re]))
 
 (defn pictures []
-  (let [pl (keys @picture-list)]
+  (let [pl (sort (keys @picture-list))]
     [re/scroller
      :attr {:id "projects"}
      :v-scroll :auto
