@@ -53,4 +53,14 @@
 (defn open-external
   "opens the selected pictures in an external viewer"
   []
-  "open external")
+  (reset! project-message "open external"))
+
+(defn clear-all
+  "de-selects all the photos"
+  []
+  (reset! project-message "clear all"))
+
+(defn select-all
+  "selects all the photos"
+  []
+  (reset! project-message "select all"))
