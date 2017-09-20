@@ -63,4 +63,7 @@
 (defn select-all
   "selects all the photos"
   []
-  (reset! project-message "select all"))
+  (go (let [pl (sort (keys @picture-list))]
+     (doall (for [pic pl]
+              (swap! picture-list assoc pic true))
+            (reset! project-message (str "Select all"))))))

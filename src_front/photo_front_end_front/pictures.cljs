@@ -13,14 +13,10 @@
      :margin "0px"
      :child [:div#pictures
              (for [pic pl]
-               (let [picture (:pic pic)]
-                 [:div.img-container
-                  [:input {:type "checkbox"
-                           :id (image-id pic)
-                           :on-click #(if (@picture-list pic)
-                                        (swap! picture-list assoc pic false)
-                                        (swap! picture-list assoc pic true))}]
-                  [:label
-                   {:for (image-id pic)}
-                   [:img
-                    {:src (str @thumbnail-directory "/" pic)}]]]))]]))
+               [:div.img-container
+                {:on-click #(if (@picture-list pic)
+                              (swap! picture-list assoc pic false)
+                              (swap! picture-list assoc pic true))}
+                (str (@picture-list pic))
+                [:img
+                 {:src (str @thumbnail-directory "/" pic)}]])]]))
