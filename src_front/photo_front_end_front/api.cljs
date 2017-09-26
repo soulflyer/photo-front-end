@@ -11,6 +11,7 @@
 (def picture-list (reagent/atom {}))
 (def project-message (reagent/atom "-"))
 (def thumbnail-directory (reagent/atom ""))
+(def highlighted-pic (reagent/atom "pic0"))
 
 (def api-root "http://localhost:3000/api")
 
@@ -58,7 +59,10 @@
 (defn clear-all
   "de-selects all the photos"
   []
-  (reset! project-message "clear all"))
+    (go (let [pl (sort (keys @picture-list))]
+     (doall (for [pic pl]
+              (swap! picture-list assoc pic false))
+            (reset! project-message (str "Select all"))))))
 
 (defn select-all
   "selects all the photos"

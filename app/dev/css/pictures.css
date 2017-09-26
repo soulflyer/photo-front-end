@@ -23,9 +23,19 @@ img {
     object-fit:contain;}
 
 #pictures .img-container img {
-    border:solid lightgray;
+    border:solid transparent;
 }
 
 #pictures .img-container img.selected {
     border: solid red;
+}
+
+#pictures .img-container.highlighted {
+    background: lightblue;
+    /* border: solid blue; */
+}
+
+#pictures .img-container.not-highlighted {
+    /* border:solid lightgray; */
+    background: lightgray;
 }
