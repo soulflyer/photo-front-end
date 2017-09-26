@@ -12,7 +12,7 @@
             [zyzanie.notification :as zn]))
 
 (load-project-list)
-(load-picture-list "2017" "05" "04-Square")
+(load-picture-list "2015" "03" "01-1000-Dives")
 (load-preferences)
 
 (defn root-component []

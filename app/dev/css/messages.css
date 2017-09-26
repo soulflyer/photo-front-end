@@ -3,6 +3,11 @@
     justify-content:space-between;
     background:darkgray;
     height:34px;
+    /* padding:3px; */
+}
+
+#filler {
+    padding: 34px;
 }
 
 #buttons {

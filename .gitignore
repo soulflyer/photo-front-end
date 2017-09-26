@@ -20,3 +20,4 @@ figwheel_server.log
 .repl/*
 .#*
 photo-front-end-darwin-x64
+package-lock.json

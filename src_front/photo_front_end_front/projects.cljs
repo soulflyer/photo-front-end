@@ -41,4 +41,5 @@
                                 :value pr
                                 :id proj
                                 :on-focus #(load-picture-list yr mo pr)
-                                :on-click #(open-project yr mo pr)}]]))]]))]]))]]))
+                                ;;:on-click #(open-project yr mo pr)
+                                }]]))]]))]]))]]))

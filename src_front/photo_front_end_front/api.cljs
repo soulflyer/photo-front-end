@@ -12,7 +12,7 @@
 (def project-message (reagent/atom "-"))
 (def thumbnail-directory (reagent/atom ""))
 
-(def api-root "http://localhost:31000/api")
+(def api-root "http://localhost:3000/api")
 
 (defn load-picture-list [yr mo pr]
   (reset! picture-list {})
