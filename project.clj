@@ -14,7 +14,7 @@
                  [cider/cider-nrepl "0.14.0"]
                  [com.cemerick/url "0.1.1"]
                  [re-com "2.1.0"]
-                 [zyzanie "0.2.5"]
+                 [keybind "2.1.0"]
                  [image-lib "0.2.1-SNAPSHOT"]]
   :plugins [[lein-cljsbuild "1.1.5"]
             [lein-externs "0.1.6"]

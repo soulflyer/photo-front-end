@@ -1,15 +1,28 @@
 (ns photo-front-end-front.pictures
   (:require [photo-front-end-front.api :refer [picture-list
                                                thumbnail-directory
-                                               highlighted-pic]]
+                                               highlighted-pic
+                                               pic-down
+                                               pic-up
+                                               pic-left
+                                               pic-right]]
             [photo-front-end-front.helpers :refer [image-id]]
-            [re-com.core :as re]))
+            [re-com.core :as re]
+            [keybind.core :as key]))
+
+(defn bind-keys []
+  (key/bind! "w" ::pic-up pic-up)
+  (key/bind! "s" ::pic-down pic-down)
+  (key/bind! "a" ::pic-left pic-left)
+  (key/bind! "d" ::pic-right pic-right))
 
 (defn pictures []
-  (let [pl (vec (keys @picture-list))]
+  (let [pl (vec (keys @picture-list))
+        ph @highlighted-pic
+        bk (bind-keys)]
     [:div
      [re/scroller
-       :attr {:id "projects"}
+       :attr {:id "pictures-scroller"}
        :v-scroll :auto
        :h-scroll :off
        :height "95vh"
@@ -18,13 +31,14 @@
                (for [index (range (count pl))]
                  (let [pic (get pl index)]
                    [:div.img-container
-                    {:on-click #(if (@picture-list pic)
+                    {:on-double-click #(if (@picture-list pic)
                                   (swap! picture-list assoc pic false)
                                   (swap! picture-list assoc pic true))
-                     :class (str "pic" index " "
-                                 (if (= @highlighted-pic (str "pic" index))
+                     :on-click #(reset! highlighted-pic index)
+                     :class (str (if (= @highlighted-pic index)
                                     "highlighted"
-                                    "not-highlighted"))}
+                                    "not-highlighted")
+                                 " pic" index)}
                     [:img
                      {:src (str @thumbnail-directory "/" pic)
                       :class (str (if (@picture-list pic)

@@ -11,7 +11,8 @@
 (def picture-list (reagent/atom {}))
 (def project-message (reagent/atom "-"))
 (def thumbnail-directory (reagent/atom ""))
-(def highlighted-pic (reagent/atom "pic0"))
+(def highlighted-pic (reagent/atom 0))
+(def pic-columns (reagent/atom 5))
 
 (def api-root "http://localhost:3000/api")
 
@@ -71,3 +72,34 @@
      (doall (for [pic pl]
               (swap! picture-list assoc pic true))
             (reset! project-message (str "Select all"))))))
+
+(defn highlight-pic
+  "Highlights/focuses a given pic"
+  [pic-number]
+  (reset! highlighted-pic pic-number))
+
+(defn pic-down
+  "Highlights/focuses the pic below the current one"
+  []
+  (let [new (+ @highlighted-pic @pic-columns)
+        max (dec (count @picture-list))]
+    (reset! highlighted-pic (min new max))))
+
+(defn pic-up
+  "Highlights/focuses the pic above the current one"
+  []
+  (let [new (- @highlighted-pic @pic-columns)]
+    (reset! highlighted-pic (max 0 new))))
+
+(defn pic-left
+  "Highlights/focuses pic to the left of the current one"
+  []
+  (let [new (dec @highlighted-pic)]
+    (reset! highlighted-pic (max 0 new))))
+
+(defn pic-right
+  "Highlights/focuses pic to the right of the current one"
+  []
+  (let [new (inc @highlighted-pic)
+        max (dec (count @picture-list))]
+    (reset! highlighted-pic (min new max))))
