@@ -27,11 +27,11 @@ img {
 }
 
 #pictures .img-container img.selected {
-    border: solid red;
+    border: solid #E73539;
 }
 
 #pictures .img-container.highlighted {
-    background: lightblue;
+    background: #2CB2B8;
     /* border: solid blue; */
 }
 

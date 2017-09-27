@@ -1,20 +1,17 @@
 (ns photo-front-end-front.pictures
   (:require [photo-front-end-front.api :refer [picture-list
                                                thumbnail-directory
-                                               highlighted-pic
-                                               pic-down
-                                               pic-up
-                                               pic-left
-                                               pic-right]]
+                                               highlighted-pic]]
+            [photo-front-end-front.picture-helper :refer [pic-down
+                                                          pic-up
+                                                          pic-left
+                                                          pic-right]]
             [photo-front-end-front.helpers :refer [image-id]]
             [re-com.core :as re]
-            [keybind.core :as key]))
+            [keybind.core :as key]
+            [photo-front-end-front.keys :refer [bind-keys]]))
 
-(defn bind-keys []
-  (key/bind! "w" ::pic-up pic-up)
-  (key/bind! "s" ::pic-down pic-down)
-  (key/bind! "a" ::pic-left pic-left)
-  (key/bind! "d" ::pic-right pic-right))
+
 
 (defn pictures []
   (let [pl (vec (keys @picture-list))
@@ -43,8 +40,5 @@
                      {:src (str @thumbnail-directory "/" pic)
                       :class (str (if (@picture-list pic)
                                     "selected"
-                                    "not-selected")
-                                  " "
-                                  )}]]))]]
-     [:div#filler [:p "filler"]]
-     ]))
+                                    "not-selected"))}]]))]]
+     [:div#filler [:p "filler"]]]))

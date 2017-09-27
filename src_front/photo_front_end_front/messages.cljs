@@ -1,8 +1,8 @@
 (ns photo-front-end-front.messages
   (:require [photo-front-end-front.api :refer [open-external
-                                               project-message
-                                               clear-all
-                                               select-all]]
+                                               project-message]]
+            [photo-front-end-front.picture-helper :refer [clear-all
+                                                          select-all]]
             [photo-front-end-front.export-json :refer [export-json-button]]))
 
 (defn messages []
