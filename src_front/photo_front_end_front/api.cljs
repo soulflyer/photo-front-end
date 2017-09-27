@@ -12,15 +12,19 @@
 (def project-message (reagent/atom "-"))
 (def thumbnail-directory (reagent/atom ""))
 (def highlighted-pic (reagent/atom 0))
-(def pic-columns (reagent/atom 5))
+(def pic-columns (reagent/atom 7))
 
 (def api-root "http://localhost:3000/api")
 
 (defn load-picture-list [yr mo pr]
   (reset! picture-list {})
   (go
-    (let [response (<! (http/get (str api-root "/project/" yr "/" mo "/" pr)))]
-      (reset! picture-list (zipmap (reader/read-string (:body response)) (repeat nil))))))
+    (let [response (<! (http/get (str api-root "/project/" yr "/" mo "/" pr)))
+          keys (reader/read-string (:body response))]
+      (reset! picture-list (zipmap
+                             keys
+;;                             (reader/read-string (:body response))
+                             (repeat nil))))))
 
 (defn load-project-list []
   (go

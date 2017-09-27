@@ -1,30 +1,26 @@
 (ns photo-front-end-front.pictures
-  (:require [photo-front-end-front.api :refer [picture-list
-                                               thumbnail-directory
-                                               highlighted-pic]]
-            [photo-front-end-front.picture-helper :refer [pic-down
-                                                          pic-up
-                                                          pic-left
-                                                          pic-right]]
-            [photo-front-end-front.helpers :refer [image-id]]
+  (:require [photo-front-end-front.api
+             :refer [highlighted-pic
+                     picture-list
+                     thumbnail-directory
+                     pic-columns]]
+            [photo-front-end-front.keys :refer [bind-keys]]
             [re-com.core :as re]
-            [keybind.core :as key]
-            [photo-front-end-front.keys :refer [bind-keys]]))
-
-
+            [clojure.string :refer [join]]))
 
 (defn pictures []
-  (let [pl (vec (keys @picture-list))
+  (let [pl (vec (sort (keys @picture-list)))
         ph @highlighted-pic
         bk (bind-keys)]
     [:div
      [re/scroller
-       :attr {:id "pictures-scroller"}
+      :attr {:id "pictures-scroller"}
        :v-scroll :auto
        :h-scroll :off
        :height "95vh"
        :margin "0px"
-       :child [:div#pictures
+      :child [:div#pictures
+              {:style {:grid-template-columns (join " " (repeat @pic-columns "1fr"))}}
                (for [index (range (count pl))]
                  (let [pic (get pl index)]
                    [:div.img-container

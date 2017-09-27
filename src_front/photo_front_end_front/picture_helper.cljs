@@ -29,7 +29,7 @@
 (defn get-pic
   "Returns a pic name given an index"
   [ind]
-  (get (vec (keys @picture-list)) ind))
+  (get (vec (sort (keys @picture-list))) ind))
 
 (defn select-pic
   [ind]
