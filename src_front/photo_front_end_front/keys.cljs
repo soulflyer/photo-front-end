@@ -6,6 +6,9 @@
                      pic-right
                      pic-up
                      shift-pic-down
+                     shift-pic-up
+                     shift-pic-right
+                     shift-pic-left
                      select-highlighted-pic]]))
 
 (defn bind-keys []
@@ -14,7 +17,7 @@
   (key/bind! "left" ::pic-left pic-left)
   (key/bind! "right" ::pic-right pic-right)
   (key/bind! "shift-down" ::shift-pic-down shift-pic-down)
-  (key/bind! "shift-up" ::shift-pic-down pic-up)
-  (key/bind! "shift-left" ::shift-pic-down pic-left)
-  (key/bind! "shift-right" ::shift-pic-down pic-right)
+  (key/bind! "shift-up" ::shift-pic-up shift-pic-up)
+  (key/bind! "shift-left" ::shift-pic-left shift-pic-left)
+  (key/bind! "shift-right" ::shift-pic-right shift-pic-right)
   (key/bind! "enter" ::select-pic select-highlighted-pic))

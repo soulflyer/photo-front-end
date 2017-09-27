@@ -36,6 +36,12 @@
   (let [pic (get-pic ind)]
     (swap! picture-list assoc pic true)))
 
+(defn toggle-pic [ind]
+  (let [pic (get-pic ind)]
+    (if (@picture-list pic)
+      (swap! picture-list assoc pic false)
+      (swap! picture-list assoc pic true))))
+
 (defn select-highlighted-pic []
   (let [pic (get-pic @highlighted-pic)]
     (swap! picture-list assoc pic true)))
@@ -66,12 +72,32 @@
         max (dec (count @picture-list))]
     (reset! highlighted-pic (min new max))))
 
-(defn shift-pic-down
-  []
+(defn shift-pic-down []
   (let [new (+ @highlighted-pic @pic-columns)
         start @highlighted-pic
-        mx (dec (count @picture-list))
+        mx (count @picture-list)
         end (min new mx)]
     (doall (for [pic (range start end)]
-       (select-pic pic)))
+       (toggle-pic pic)))
+    (reset! highlighted-pic end )))
+
+(defn shift-pic-up []
+  (let [new (- @highlighted-pic @pic-columns)
+        end (- @highlighted-pic 0)
+        start (max 0 new)]
+    (doall (for [pic (range start end)]
+             (toggle-pic pic)))
+    (reset! highlighted-pic start)))
+
+(defn shift-pic-right []
+  (let [new (inc @highlighted-pic)
+        mx  (dec (count @picture-list))
+        end (min new mx)]
+    (toggle-pic @highlighted-pic)
+    (reset! highlighted-pic end)))
+
+(defn shift-pic-left []
+  (let [new (dec @highlighted-pic)
+        end (max new 0)]
+    (toggle-pic @highlighted-pic)
     (reset! highlighted-pic end)))
