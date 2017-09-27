@@ -9,7 +9,9 @@
                      shift-pic-up
                      shift-pic-right
                      shift-pic-left
-                     select-highlighted-pic]]))
+                     toggle-highlighted-pic
+                     select-all
+                     clear-all]]))
 
 (defn bind-keys []
   (key/bind! "up" ::pic-up pic-up)
@@ -20,4 +22,6 @@
   (key/bind! "shift-up" ::shift-pic-up shift-pic-up)
   (key/bind! "shift-left" ::shift-pic-left shift-pic-left)
   (key/bind! "shift-right" ::shift-pic-right shift-pic-right)
-  (key/bind! "enter" ::select-pic select-highlighted-pic))
+  (key/bind! "enter" ::select-pic toggle-highlighted-pic)
+  (key/bind! "ctrl-a" ::select-all select-all)
+  (key/bind! "ctrl-d" ::clear-all clear-all))

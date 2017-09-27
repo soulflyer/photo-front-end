@@ -46,6 +46,9 @@
   (let [pic (get-pic @highlighted-pic)]
     (swap! picture-list assoc pic true)))
 
+(defn toggle-highlighted-pic []
+  (toggle-pic @highlighted-pic))
+
 (defn pic-down
   "Highlights/focuses the pic below the current one"
   []
