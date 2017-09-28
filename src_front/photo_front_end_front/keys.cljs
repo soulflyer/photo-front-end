@@ -11,7 +11,9 @@
                      shift-pic-left
                      toggle-highlighted-pic
                      select-all
-                     clear-all]]))
+                     clear-all]]
+            [photo-front-end-front.api :refer [open-external]]
+            [photo-front-end-front.export-json :as json]))
 
 (defn bind-keys []
   (key/bind! "up" ::pic-up pic-up)
@@ -24,4 +26,8 @@
   (key/bind! "shift-right" ::shift-pic-right shift-pic-right)
   (key/bind! "enter" ::select-pic toggle-highlighted-pic)
   (key/bind! "ctrl-a" ::select-all select-all)
-  (key/bind! "ctrl-d" ::clear-all clear-all))
+  (key/bind! "ctrl-d" ::clear-all clear-all)
+  (key/bind! "o" ::open-external open-external)
+  (key/bind! "ctrl-j" ::export-json #(do (reset! json/save-form-data @json/form-data)
+                                         (reset! json/show? true)))
+  )
