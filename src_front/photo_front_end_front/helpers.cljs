@@ -36,3 +36,11 @@
   "returns the list of images currently selected"
   [picture-list]
   (keys (filter last picture-list)))
+
+(defn image-path
+  "return a string containing the year/month/project/version path of an image"
+  [image-map]
+  (str (image-map "Year") "/"
+       (image-map "Month") "/"
+       (image-map "Project") "/"
+       (image-map "Version") ".jpg"))

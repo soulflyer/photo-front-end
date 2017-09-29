@@ -4,7 +4,8 @@
             [cljs.core.async :refer [<!]]
             [cljs.reader :as reader]
             [cognitect.transit :as json]
-            [photo-front-end-front.helpers :refer [selected]]
+            [photo-front-end-front.helpers :refer [selected
+                                                   image-path]]
             [reagent.core :as reagent])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
@@ -19,20 +20,20 @@
 (def api-root "http://localhost:31000/api")
 (def r (json/reader :json))
 
-(defn load-picture-list [yr mo pr]
-  (reset! picture-list {})
-  (go
-    (let [response (<! (http/get (str api-root "/project/" yr "/" mo "/" pr)))
-          keys (reader/read-string (:body response))]
-      (reset! picture-list (zipmap
-                             keys
-                             (repeat nil))))))
+;; (defn load-picture-list [yr mo pr]
+;;   (reset! picture-list {})
+;;   (go
+;;     (let [response (<! (http/get (str api-root "/project/" yr "/" mo "/" pr)))
+;;           keys (reader/read-string (:body response))]
+;;       (reset! picture-list (zipmap
+;;                              keys
+;;                              (repeat nil))))))
 
-(defn load-picture-details [yr mo pr]
+(defn load-picture-list [yr mo pr]
   (go
     (let [response (<! (http/get (str api-root "/project2/" yr "/" mo "/" pr)))
           pics (json/read r (:body response)) ]
-      (reset! picture-details pics))))
+      (reset! picture-list (zipmap (for [pic pics] (image-path pic)) (repeat nil))))))
 
 (defn load-project-list []
   (go
