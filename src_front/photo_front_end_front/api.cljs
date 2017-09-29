@@ -3,18 +3,21 @@
             [cljs-http.client :as http]
             [cljs.core.async :refer [<!]]
             [cljs.reader :as reader]
+            [cognitect.transit :as json]
             [photo-front-end-front.helpers :refer [selected]]
             [reagent.core :as reagent])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
 (def project-list (reagent/atom {}))
 (def picture-list (reagent/atom {}))
+(def picture-details (reagent/atom {}))
 (def project-message (reagent/atom "-"))
 (def thumbnail-directory (reagent/atom ""))
 (def highlighted-pic (reagent/atom 0))
 (def pic-columns (reagent/atom 5))
 
 (def api-root "http://localhost:31000/api")
+(def r (json/reader :json))
 
 (defn load-picture-list [yr mo pr]
   (reset! picture-list {})
@@ -24,6 +27,12 @@
       (reset! picture-list (zipmap
                              keys
                              (repeat nil))))))
+
+(defn load-picture-details [yr mo pr]
+  (go
+    (let [response (<! (http/get (str api-root "/project2/" yr "/" mo "/" pr)))
+          pics (json/read r (:body response)) ]
+      (reset! picture-details pics))))
 
 (defn load-project-list []
   (go
