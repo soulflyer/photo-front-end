@@ -22,6 +22,11 @@ img {
     width:100%;
     object-fit:contain;}
 
+#pictures .img-container:focus {
+    outline:none;
+    background:#2CB2B8;
+}
+
 #pictures .img-container img {
     border:solid transparent;
 }
@@ -30,10 +35,10 @@ img {
     border: solid #E73539;
 }
 
-#pictures .img-container.highlighted {
-    background: #2CB2B8;
-    /* border: solid blue; */
-}
+/* #pictures .img-container.highlighted { */
+/*     background: #2CB2B8; */
+/*     /\* border: solid blue; *\/ */
+/* } */
 
 #pictures .img-container.not-highlighted {
     /* border:solid lightgray; */

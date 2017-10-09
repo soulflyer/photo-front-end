@@ -94,7 +94,8 @@
         end (min new mx)]
     (doall (for [pic (range start end)]
        (toggle-pic pic)))
-    (reset! highlighted-pic end )))
+    (reset! highlighted-pic end )
+    (focus end)))
 
 (defn shift-pic-up []
   (let [new (- @highlighted-pic @pic-columns)
@@ -102,17 +103,20 @@
         start (max 0 new)]
     (doall (for [pic (range start end)]
              (toggle-pic pic)))
-    (reset! highlighted-pic start)))
+    (reset! highlighted-pic start)
+    (focus start)))
 
 (defn shift-pic-right []
   (let [new (inc @highlighted-pic)
         mx  (dec (count @picture-list))
         end (min new mx)]
     (toggle-pic @highlighted-pic)
-    (reset! highlighted-pic end)))
+    (reset! highlighted-pic end)
+    (focus end)))
 
 (defn shift-pic-left []
   (let [new (dec @highlighted-pic)
         end (max new 0)]
     (toggle-pic @highlighted-pic)
-    (reset! highlighted-pic end)))
+    (reset! highlighted-pic end)
+    (focus end)))

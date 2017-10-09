@@ -15,7 +15,7 @@
 (def project-message (reagent/atom "-"))
 (def thumbnail-directory (reagent/atom ""))
 (def highlighted-pic (reagent/atom 0))
-(def pic-columns (reagent/atom 5))
+(def pic-columns (reagent/atom 8))
 
 (def api-root "http://localhost:31000/api")
 (def r (json/reader :json))
