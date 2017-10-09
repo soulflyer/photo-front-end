@@ -33,3 +33,4 @@ $TME send-keys -t :$LABEL.2 'ec .' C-m
 $TME select-pane -t 2
 # *************************************************************************************
 tmux send-keys -t :$LABEL.2 M-x 'cider-jack-in-clojurescript' C-m
+tmux send-keys -t :$LABEL.3 'electron/Electron.app/Contents/MacOS/Electron app/dev&'
