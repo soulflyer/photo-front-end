@@ -29,5 +29,4 @@
   (key/bind! "ctrl-d" ::clear-all clear-all)
   (key/bind! "o" ::open-external open-external)
   (key/bind! "ctrl-j" ::export-json #(do (reset! json/save-form-data @json/form-data)
-                                         (reset! json/show? true)))
-  )
+                                         (reset! json/show? true))))

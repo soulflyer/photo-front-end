@@ -39,3 +39,7 @@ img {
     /* border:solid lightgray; */
     background: lightgray;
 }
+
+#pictures .img-container .img-details {
+    height: 6px;
+}

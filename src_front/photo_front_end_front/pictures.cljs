@@ -2,6 +2,7 @@
   (:require [photo-front-end-front.api
              :refer [highlighted-pic
                      picture-list
+                     picture-details
                      thumbnail-directory
                      pic-columns]]
             [photo-front-end-front.keys :refer [bind-keys]]
@@ -9,6 +10,7 @@
             [clojure.string :refer [join]]))
 
 (defn pictures []
+  ;; Convert the following to get pl from @picture-details
   (let [pl (vec (sort (keys @picture-list)))
         ph @highlighted-pic
         bk (bind-keys)]
@@ -36,5 +38,7 @@
                      {:src (str @thumbnail-directory "/" pic)
                       :class (str (if (@picture-list pic)
                                     "selected"
-                                    "not-selected"))}]]))]]
+                                    "not-selected"))}]
+                    [:div.img-details
+                     "***"]]))]]
      [:div#filler [:p "filler"]]]))
