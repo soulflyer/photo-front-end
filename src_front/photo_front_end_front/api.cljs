@@ -31,7 +31,7 @@
 
 (defn load-picture-list [yr mo pr]
   (go
-    (let [response (<! (http/get (str api-root "/project2/" yr "/" mo "/" pr)))
+    (let [response (<! (http/get (str api-root "/project/" yr "/" mo "/" pr)))
           pics (json/read r (:body response)) ]
       (reset! picture-details pics)
       (reset! picture-list (zipmap (for [pic pics] (image-path pic)) (repeat nil))))))
