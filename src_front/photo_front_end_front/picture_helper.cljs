@@ -2,8 +2,12 @@
   (:require [photo-front-end-front.api :refer [picture-list
                                                project-message
                                                pic-columns
-                                               highlighted-pic]])
-  (:require-macros [cljs.core.async.macros :refer [go]]))
+                                               highlighted-pic]]
+            [enfocus.core :as ef])
+  (:require-macros [cljs.core.async.macros :refer [go]]
+                   [enfocus.macros :as em]))
+
+(em/defaction focus [pic] (str ".pic" pic) (ef/focus))
 
 (defn clear-all
   "de-selects all the photos"
@@ -52,28 +56,36 @@
 (defn pic-down
   "Highlights/focuses the pic below the current one"
   []
-  (let [new (+ @highlighted-pic @pic-columns)
-        max (dec (count @picture-list))]
-    (reset! highlighted-pic (min new max))))
+  (let [next (+ @highlighted-pic @pic-columns)
+        max (dec (count @picture-list))
+        new (min next max)]
+    (reset! highlighted-pic new)
+    (focus new)))
 
 (defn pic-up
   "Highlights/focuses the pic above the current one"
   []
-  (let [new (- @highlighted-pic @pic-columns)]
-    (reset! highlighted-pic (max 0 new))))
+  (let [next (- @highlighted-pic @pic-columns)
+        new (max 0 next)]
+    (reset! highlighted-pic new)
+    (focus new)))
 
 (defn pic-left
   "Highlights/focuses pic to the left of the current one"
   []
-  (let [new (dec @highlighted-pic)]
-    (reset! highlighted-pic (max 0 new))))
+  (let [next (dec @highlighted-pic)
+        new (max 0 next)]
+    (reset! highlighted-pic new)
+    (focus new)))
 
 (defn pic-right
   "Highlights/focuses pic to the right of the current one"
   []
-  (let [new (inc @highlighted-pic)
-        max (dec (count @picture-list))]
-    (reset! highlighted-pic (min new max))))
+  (let [next (inc @highlighted-pic)
+        max (dec (count @picture-list))
+        new (min next max)]
+    (reset! highlighted-pic new)
+    (focus new)))
 
 (defn shift-pic-down []
   (let [new (+ @highlighted-pic @pic-columns)

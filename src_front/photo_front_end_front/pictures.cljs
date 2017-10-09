@@ -6,6 +6,7 @@
                      thumbnail-directory
                      pic-columns]]
             [photo-front-end-front.keys :refer [bind-keys]]
+            [photo-front-end-front.picture-helper :refer [focus]]
             [re-com.core :as re]
             [clojure.string :refer [join]]))
 
@@ -33,7 +34,8 @@
                      :class (str (if (= @highlighted-pic index)
                                     "highlighted"
                                     "not-highlighted")
-                                 " pic" index)}
+                                 " pic" index)
+                     :tabIndex "0"}
                     [:img
                      {:src (str @thumbnail-directory "/" pic)
                       :class (str (if (@picture-list pic)

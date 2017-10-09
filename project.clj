@@ -15,6 +15,7 @@
                  [com.cemerick/url "0.1.1"]
                  [re-com "2.1.0"]
                  [keybind "2.1.0"]
+                 [enfocus "2.1.0"]
                  [com.cognitect/transit-cljs "0.8.239"]
                  [image-lib "0.2.1-SNAPSHOT"]]
   :plugins [[lein-cljsbuild "1.1.5"]
