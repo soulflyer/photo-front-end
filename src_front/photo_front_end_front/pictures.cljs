@@ -7,6 +7,7 @@
                      pic-columns]]
             [photo-front-end-front.keys :refer [bind-keys]]
             [photo-front-end-front.picture-helper :refer [focus]]
+            [photo-front-end-front.helpers :refer [image-id]]
             [re-com.core :as re]
             [clojure.string :refer [join]]))
 
@@ -25,7 +26,9 @@
       :child [:div#pictures
               {:style {:grid-template-columns (join " " (repeat @pic-columns "1fr"))}}
                (for [index (range (count pl))]
-                 (let [pic (get pl index)]
+                 (let [pic (get pl index)
+                       pic-id (image-id pic)
+                       details (first (filter (fn [x] (= pic-id (x "_id"))) @picture-details))]
                    [:div.img-container
                     {:on-double-click #(if (@picture-list pic)
                                   (swap! picture-list assoc pic false)
@@ -41,6 +44,5 @@
                       :class (str (if (@picture-list pic)
                                     "selected"
                                     "not-selected"))}]
-                    [:div.img-details
-                     "***"]]))]]
+                    [:div.img-details (details "Version")]]))]]
      [:div#filler [:p "filler"]]]))
