@@ -9,6 +9,12 @@
 
 (em/defaction focus [pic] (str ".pic" pic) (ef/focus))
 
+(defn inc-cols []
+  (reset! pic-columns (+ @pic-columns 1)))
+
+(defn dec-cols []
+  (reset! pic-columns (- @pic-columns 1)))
+
 (defn clear-all
   "de-selects all the photos"
   []

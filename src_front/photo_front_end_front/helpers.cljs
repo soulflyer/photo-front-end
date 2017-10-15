@@ -1,4 +1,8 @@
-(ns photo-front-end-front.helpers)
+(ns photo-front-end-front.helpers
+  (:require [clojure.string :refer [join]]))
+
+(defn stars [num]
+  (join (take num (repeat "*"))))
 
 (defn project-vector [project-string]
   [(subs project-string 0 4)

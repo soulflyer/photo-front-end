@@ -50,6 +50,10 @@ img {
     background:lightgrey;
 }
 
+#pictures .img-container .img-details p {
+    margin: 4px 0px 0px 0px
+}
+
 #pictures .img-container .img-details .name {
     float:left;
 }

@@ -2,13 +2,23 @@
   (:require [photo-front-end-front.api :refer [open-external
                                                project-message]]
             [photo-front-end-front.picture-helper :refer [clear-all
-                                                          select-all]]
+                                                          select-all
+                                                          inc-cols
+                                                          dec-cols]]
             [photo-front-end-front.export-json :refer [export-json-button]]))
 
 (defn messages []
   [:div#messages
    [:p (str @project-message)]
    [:div#buttons
+    [:input {:type "button"
+             :id "inc-cols"
+             :value "<"
+             :on-click #(dec-cols)}]
+    [:input {:type "button"
+             :id "inc-cols"
+             :value ">"
+             :on-click #(inc-cols)}]
     [export-json-button]
     [:input {:type "button"
              :id "open-external"

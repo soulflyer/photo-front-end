@@ -13,7 +13,8 @@
 (def picture-list (reagent/atom {}))
 (def picture-details (reagent/atom {}))
 (def project-message (reagent/atom "-"))
-(def thumbnail-directory (reagent/atom ""))
+;;(def thumbnail-directory (reagent/atom ""))
+(def medium-directory (reagent/atom ""))
 (def highlighted-pic (reagent/atom 0))
 (def pic-columns (reagent/atom 4))
 
@@ -43,8 +44,8 @@
 
 (defn load-preferences []
   (go
-    (let [response (<! (http/get (str api-root "/preferences/thumbnail-directory")))]
-      (reset! thumbnail-directory (:body response)))))
+    (let [response (<! (http/get (str api-root "/preferences/small-directory")))]
+      (reset! medium-directory (:body response)))))
 
 (defn open-project [yr mo pr]
   (go

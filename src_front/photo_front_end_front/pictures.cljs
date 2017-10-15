@@ -3,11 +3,12 @@
              :refer [highlighted-pic
                      picture-list
                      picture-details
-                     thumbnail-directory
+                     medium-directory
                      pic-columns]]
             [photo-front-end-front.keys :refer [bind-keys]]
             [photo-front-end-front.picture-helper :refer [focus]]
-            [photo-front-end-front.helpers :refer [image-id]]
+            [photo-front-end-front.helpers :refer [image-id
+                                                   stars]]
             [re-com.core :as re]
             [clojure.string :refer [join]]))
 
@@ -39,12 +40,15 @@
                                     "not-highlighted")
                                  " pic" index)
                      :tabIndex "0"}
+                    [:div.img-details
+                     [:p.name (details "Version")]
+                     [:p.rating (stars (js/parseInt (details "Rating")))]]
                     [:img
-                     {:src (str @thumbnail-directory "/" pic)
+                     {:src (str @medium-directory "/" pic)
                       :class (str (if (@picture-list pic)
                                     "selected"
                                     "not-selected"))}]
-                    [:div.img-details
-                     [:p.name (details "Version")]
-                     [:p.rating (details "Rating")]]]))]]
+                    [:div.img-details-bottom
+                     [:p.keywords (join "," (details "Keywords"))]]
+                    ]))]]
      [:div#filler [:p "filler"]]]))
