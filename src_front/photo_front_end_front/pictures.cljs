@@ -44,5 +44,7 @@
                       :class (str (if (@picture-list pic)
                                     "selected"
                                     "not-selected"))}]
-                    [:div.img-details (details "Version")]]))]]
+                    [:div.img-details
+                     [:p.name (details "Version")]
+                     [:p.rating (details "Rating")]]]))]]
      [:div#filler [:p "filler"]]]))

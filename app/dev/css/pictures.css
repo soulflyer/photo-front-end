@@ -1,7 +1,6 @@
 * {
     min-height: inherit;
     /* this is set to 0px in re-com.css and it screws up the grid display*/
-
 }
 
 #pictures {
@@ -15,10 +14,8 @@
     grid-column-start:auto;
     float:left;
     padding:6px;
-     /* width:20%; */
 }
 img {
-    /* height:100%; */
     width:100%;
     object-fit:contain;}
 
@@ -46,5 +43,17 @@ img {
 }
 
 #pictures .img-container .img-details {
-    height: 6px;
+
+}
+
+#pictures-scroller {
+    background:lightgrey;
+}
+
+#pictures .img-container .img-details .name {
+    float:left;
+}
+
+#pictures .img-container .img-details .rating {
+    float:right;
 }
