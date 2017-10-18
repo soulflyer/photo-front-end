@@ -1,7 +1,9 @@
 (ns photo-front-end-front.core
-  (:require [photo-front-end-front.api
-             :refer
-             [load-picture-list load-preferences load-project-list]]
+  (:require [photo-front-end-front.api :refer [load-picture-list
+                                               load-preference
+                                               load-project-list
+                                               current-project
+                                               medium-directory]]
             [photo-front-end-front.messages :refer [messages]]
             [photo-front-end-front.pictures :refer [pictures]]
             [photo-front-end-front.projects :refer [projects]]
@@ -11,7 +13,7 @@
 
 (load-project-list)
 (load-picture-list "2015" "03" "01-1000-Dives")
-(load-preferences)
+(load-preference medium-directory "medium-directory")
 
 (defn root-component []
   [:div#root

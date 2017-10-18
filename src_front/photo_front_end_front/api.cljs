@@ -17,18 +17,9 @@
 (def medium-directory (reagent/atom ""))
 (def highlighted-pic (reagent/atom 0))
 (def pic-columns (reagent/atom 4))
-
+(def current-project (reagent/atom {:year "2015" :month"03" :project "01-1000-Dives"}))
 (def api-root "http://localhost:31000/api")
 (def r (json/reader :json))
-
-;; (defn load-picture-list [yr mo pr]
-;;   (reset! picture-list {})
-;;   (go
-;;     (let [response (<! (http/get (str api-root "/project/" yr "/" mo "/" pr)))
-;;           keys (reader/read-string (:body response))]
-;;       (reset! picture-list (zipmap
-;;                              keys
-;;                              (repeat nil))))))
 
 (defn load-picture-list [yr mo pr]
   (go
@@ -42,10 +33,16 @@
     (let [project-response (<! (http/get (str api-root "/projects")))]
       (reset! project-list (reader/read-string (:body project-response))))))
 
-(defn load-preferences []
+(defn load-preference [store pref]
   (go
-    (let [response (<! (http/get (str api-root "/preferences/small-directory")))]
-      (reset! medium-directory (:body response)))))
+    (let [response (<! (http/get (str api-root "/preferences/" pref)))]
+      (reset! store (:body response)))))
+
+(defn set-preference [pref val]
+  (go
+    (let [response (<! (http/get (str api-root "/preferences/set/" pref "/" val)))]
+      (:body response))
+   ))
 
 (defn open-project [yr mo pr]
   (go
