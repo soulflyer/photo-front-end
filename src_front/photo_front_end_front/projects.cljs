@@ -40,6 +40,6 @@
                        [:input {:type "button"
                                 :value pr
                                 :id proj
-                                :on-focus #(load-picture-list yr mo pr)
+                                :on-focus #(load-picture-list (str yr "/" mo "/" pr))
                                 ;;:on-click #(open-project yr mo pr)
                                 }]]))]]))]]))]]))

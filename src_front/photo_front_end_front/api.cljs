@@ -21,9 +21,16 @@
 (def api-root "http://localhost:31000/api")
 (def r (json/reader :json))
 
-(defn load-picture-list [yr mo pr]
+;; (defn load-picture-list [yr mo pr]
+;;   (go
+;;     (let [response (<! (http/get (str api-root "/project/" yr "/" mo "/" pr)))
+;;           pics (json/read r (:body response)) ]
+;;       (reset! picture-details pics)
+;;       (reset! picture-list (zipmap (for [pic pics] (image-path pic)) (repeat nil))))))
+
+(defn load-picture-list [pr]
   (go
-    (let [response (<! (http/get (str api-root "/project/" yr "/" mo "/" pr)))
+    (let [response (<! (http/get (str api-root "/project/" pr)))
           pics (json/read r (:body response)) ]
       (reset! picture-details pics)
       (reset! picture-list (zipmap (for [pic pics] (image-path pic)) (repeat nil))))))
@@ -40,9 +47,8 @@
 
 (defn set-preference [pref val]
   (go
-    (let [response (<! (http/get (str api-root "/preferences/set/" pref "/" val)))]
-      (:body response))
-   ))
+    (let [response (<! (http/get (str api-root "/preferences/set/" pref "/" (url-encode val))))]
+      (:body response))))
 
 (defn open-project [yr mo pr]
   (go

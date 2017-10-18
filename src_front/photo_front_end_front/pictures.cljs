@@ -4,7 +4,8 @@
                      picture-list
                      picture-details
                      medium-directory
-                     pic-columns]]
+                     pic-columns
+                     current-project]]
             [photo-front-end-front.keys :refer [bind-keys]]
             [photo-front-end-front.picture-helper :refer [focus]]
             [photo-front-end-front.helpers :refer [image-id
@@ -16,6 +17,7 @@
   ;; Convert the following to get pl from @picture-details
   (let [pl (vec (sort (keys @picture-list)))
         ph @highlighted-pic
+        cp @current-project
         bk (bind-keys)]
     [:div
      [re/scroller
