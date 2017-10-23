@@ -21,25 +21,6 @@
 (def api-root "http://localhost:31000/api")
 (def r (json/reader :json))
 
-;; (defn load-picture-list [yr mo pr]
-;;   (go
-;;     (let [response (<! (http/get (str api-root "/project/" yr "/" mo "/" pr)))
-;;           pics (json/read r (:body response)) ]
-;;       (reset! picture-details pics)
-;;       (reset! picture-list (zipmap (for [pic pics] (image-path pic)) (repeat nil))))))
-
-(defn load-picture-list [pr]
-  (go
-    (let [response (<! (http/get (str api-root "/project/" pr)))
-          pics (json/read r (:body response)) ]
-      (reset! picture-details pics)
-      (reset! picture-list (zipmap (for [pic pics] (image-path pic)) (repeat nil))))))
-
-(defn load-project-list []
-  (go
-    (let [project-response (<! (http/get (str api-root "/projects")))]
-      (reset! project-list (reader/read-string (:body project-response))))))
-
 (defn load-preference [store pref]
   (go
     (let [response (<! (http/get (str api-root "/preferences/" pref)))]
@@ -49,6 +30,19 @@
   (go
     (let [response (<! (http/get (str api-root "/preferences/set/" pref "/" (url-encode val))))]
       (:body response))))
+
+(defn load-picture-list [pr]
+  (go
+    (let [response (<! (http/get (str api-root "/project/" pr)))
+          pics (json/read r (:body response)) ]
+      (reset! picture-details pics)
+      (set-preference "current-project" pr)
+      (reset! picture-list (zipmap (for [pic pics] (image-path pic)) (repeat nil))))))
+
+(defn load-project-list []
+  (go
+    (let [project-response (<! (http/get (str api-root "/projects")))]
+      (reset! project-list (reader/read-string (:body project-response))))))
 
 (defn open-project [yr mo pr]
   (go
