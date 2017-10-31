@@ -59,7 +59,7 @@
                                  ["cljsbuild" "once" "prod-main"]
                                  ["cljsbuild" "once" "prod-front"]]
             ;; electron packager for production
-            "descjop-uberapp-osx" ["shell" "electron-packager" "./app/prod" "photo-front-end" "--platform=darwin" "--arch=x64" "--electron-version=1.6.6"]
+            "descjop-uberapp-osx" ["shell" "electron-packager" "./app/prod" "photo-front-end" "--platform=darwin" "--arch=x64" "--electron-version=1.7.8"]
             "descjop-uberapp-app-store" ["shell" "electron-packager" "./app/prod" "photo-front-end" "--platform=mas" "--arch=x64" "--electron-version=1.6.6"]
             "descjop-uberapp-linux" ["shell" "electron-packager" "./app/prod" "photo-front-end" "--platform=linux" "--arch=x64" "--electron-version=1.6.6"]
             "descjop-uberapp-win64" ["shell" "cmd.exe" "/c" "electron-packager" "./app/prod" "photo-front-end" "--platform=win32" "--arch=x64" "--electron-version=1.6.6"]

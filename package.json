@@ -9,5 +9,8 @@
         "electron-packager": "^8.5.1"
     },
     "license": "MIT",
-    "repository": "YOUR_OWN_REPOSITORY"
+    "repository": "YOUR_OWN_REPOSITORY",
+    "dependencies": {
+        "electron": "^1.7.9"
+    }
 }
