@@ -53,4 +53,8 @@
                     [:div.img-details-bottom
                      [:p.keywords (join "," (details "Keywords"))]]
                     ]))]]
-     [:div#filler [:p "filler"]]]))
+;;     [:div#filler [:p "filler"]]
+     ]))
+
+(defn panel []
+  [pictures])

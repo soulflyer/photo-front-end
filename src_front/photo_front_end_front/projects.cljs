@@ -43,3 +43,6 @@
                                 :on-focus #(load-picture-list (str yr "/" mo "/" pr))
                                 ;;:on-click #(open-project yr mo pr)
                                 }]]))]]))]]))]]))
+
+(defn panel []
+  [projects])

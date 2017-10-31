@@ -18,6 +18,7 @@
 (def highlighted-pic (reagent/atom 0))
 (def pic-columns (reagent/atom 4))
 (def current-project (reagent/atom {:year "2015" :month"03" :project "01-1000-Dives"}))
+(def selected-tab (reagent/atom :projects))
 (def api-root "http://localhost:31000/api")
 (def r (json/reader :json))
 
