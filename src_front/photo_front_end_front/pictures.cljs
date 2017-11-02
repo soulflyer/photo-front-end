@@ -44,6 +44,7 @@
                                 :on-click #(reset! highlighted-pic index)
                                 :tabIndex "0"}
                          :children [[re/h-box
+                                     :justify :between
                                      :class "img-details"
                                      :children
                                      [[:p.name (details "Version")]

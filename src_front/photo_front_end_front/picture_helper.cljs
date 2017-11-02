@@ -21,7 +21,7 @@
     (go (let [pl (sort (keys @picture-list))]
      (doall (for [pic pl]
               (swap! picture-list assoc pic false))
-            (reset! project-message (str "Select all"))))))
+            (reset! project-message (str "Clear all"))))))
 
 (defn select-all
   "selects all the photos"

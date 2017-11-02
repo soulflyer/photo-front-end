@@ -34,3 +34,20 @@ body {
 ::-webkit-scrollbar {
     width:0px;
 }
+
+.nav-tabs > li{
+    margin-bottom: 0px;
+}
+
+.nav-tabs > li > a {
+    padding: 3px;
+    color: #555;
+}
+
+.nav-tabs > li.active > a {
+    background-color: lightgray
+}
+
+.nav-tabs {
+    border-bottom: 0px;
+}

@@ -31,13 +31,15 @@
      :children [[re/h-split
                  :margin "0px"
                  :panel-1 [re/v-box
+                           :width "100%"
+                           :min-width "300px"
                            :children
                            [[re/horizontal-tabs
+                             :attr {:id "tabs"}
                              :model     selected-tab
                              :tabs      tabs-definition
                              :on-change change-tab]
-                            [(:panel (ru/item-for-id @selected-tab tabs-definition))]
-                            ]]
+                            [(:panel (ru/item-for-id @selected-tab tabs-definition))]]]
                  :panel-2 [pictures]
                  :initial-split "15%"]
                 [re/box

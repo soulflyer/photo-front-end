@@ -38,6 +38,7 @@
           pics (json/read r (:body response)) ]
       (reset! picture-details pics)
       (set-preference "current-project" pr)
+      (reset! current-project pr)
       (reset! picture-list (zipmap (for [pic pics] (image-path pic)) (repeat nil))))))
 
 (defn load-project-list []
@@ -70,5 +71,6 @@
   (go
     (let [response (<! (http/get
                          (str api-root "/open/medium/"
-                              (massage-picture-list (selected @picture-list)))))]
-        (reset! project-message (:body response)))))
+                              (massage-picture-list (selected @picture-list)))))
+          resp (:body response)]
+        (reset! project-message resp))))

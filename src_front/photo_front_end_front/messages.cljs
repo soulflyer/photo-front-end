@@ -10,8 +10,13 @@
 
 (defn messages []
   [re/h-box
-   :children [[:p (str @project-message)]
+   :attr {:id "messages"}
+   :justify :between
+   :children [[re/scroller
+               :attr {:id "message"}
+               :child [:p (str @project-message)]]
               [re/h-box
+               :attr {:id "buttons"}
                :children [[:input {:type "button"
                                    :id "inc-cols"
                                    :value "<"

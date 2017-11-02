@@ -48,13 +48,19 @@ img {
 }
 
 #pictures .img-container .img-details p {
-    margin: 4px 0px 0px 0px
+    margin: 6px 0px -3px 0px;
+    font-size:xx-small;
 }
 
 #pictures .img-container .img-details .name {
-    float:left;
+    margin-left:10px;
 }
 
 #pictures .img-container .img-details .rating {
-    float:right;
+    margin-right:10px;
+}
+
+#pictures .img-container .img-details-bottom p {
+    font-size:x-small;
+    margin-left:6px;
 }
