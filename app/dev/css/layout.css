@@ -11,16 +11,16 @@ body {
     background:darkgrey;
 }
 
-#root {
-    font-family: system-ui;
-    height:100%;
-    padding:5px;
-}
+/* #root { */
+/*     font-family: system-ui; */
+/*     height:100%; */
+/*     padding:5px; */
+/* } */
 
-#top {
-    /* display: flex; */
-    /* height: 98vh; */
-}
+/* #top { */
+/*     /\* display: flex; *\/ */
+/*     /\* height: 98vh; *\/ */
+/* } */
 
 #projects {
     background:lightgrey;

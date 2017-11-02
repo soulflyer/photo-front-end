@@ -53,20 +53,20 @@
                          false)]
     ;;^{:doc "hello"}
     (fn []
-      [:div
-       [:input {:type "button"
-                :id "json-export"
-                :value "Export JSON"
-                :on-click #(do
-                             (reset! save-form-data @form-data)
-                             (reset! show? true))}]
-       (when @show?
-         [re/modal-panel
-          :wrap-nicely? false
-          :backdrop-color   "grey"
-          :backdrop-opacity 0.6
-          :backdrop-on-click process-cancel
-          :child [dialog-markup
-                  form-data
-                  process-ok
-                  process-cancel]])])))
+      [re/h-box
+       :children [[:input {:type "button"
+                           :id "json-export"
+                           :value "Export JSON"
+                           :on-click #(do
+                                        (reset! save-form-data @form-data)
+                                        (reset! show? true))}]
+                  (when @show?
+                    [re/modal-panel
+                     :wrap-nicely? false
+                     :backdrop-color   "grey"
+                     :backdrop-opacity 0.6
+                     :backdrop-on-click process-cancel
+                     :child [dialog-markup
+                             form-data
+                             process-ok
+                             process-cancel]])]])))
