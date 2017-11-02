@@ -26,10 +26,8 @@
 (defn root-component []
   (let [_ (load-picture-list @current-project)
         change-tab #(reset! selected-tab %)]
-   [:div#root
     [re/v-box
-    ;; :margin "0px"
-    ;; :height "100%"
+     :height "100%"
      :children [[re/h-split
                  :margin "0px"
                  :panel-1 [re/v-box
@@ -39,11 +37,11 @@
                              :tabs      tabs-definition
                              :on-change change-tab]
                             [(:panel (ru/item-for-id @selected-tab tabs-definition))]
-                           ;;[projects/panel]
                             ]]
                  :panel-2 [pictures]
                  :initial-split "15%"]
-                [messages]]]]))
+                [re/box
+                 :child [messages]]]]))
 
 (defn mount-root [setting]
   (reagent/render [root-component]

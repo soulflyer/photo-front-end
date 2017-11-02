@@ -10,7 +10,7 @@
         years (sort (set (map first pl)))]
     [re/scroller
      :attr {:id "projects"}
-     :v-scroll :auto
+     :v-scroll :on
      :h-scroll :off
      :height "95vh"
      :child [:ol#menutree
