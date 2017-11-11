@@ -35,7 +35,6 @@
                            :min-width "300px"
                            :children
                            [[re/horizontal-tabs
-                             :attr {:id "tabs"}
                              :model     selected-tab
                              :tabs      tabs-definition
                              :on-change change-tab]
