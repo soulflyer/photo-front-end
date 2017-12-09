@@ -5,7 +5,9 @@
             [cljs.reader :as reader]
             [cognitect.transit :as json]
             [photo-front-end-front.helpers :refer [selected
-                                                   image-path]]
+                                                   image-path
+                                                   csv
+                                                   un-csv]]
             [reagent.core :as reagent])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
@@ -17,9 +19,10 @@
 (def medium-directory (reagent/atom ""))
 (def highlighted-pic (reagent/atom 0))
 (def pic-columns (reagent/atom 4))
-(def current-project (reagent/atom {:year "2015" :month"03" :project "01-1000-Dives"}))
+(def current-project (reagent/atom ""))
 (def selected-tab (reagent/atom :projects))
 (def api-root "http://localhost:31000/api")
+(def keyword-buttons (reagent/atom ["empty"]))
 (def r (json/reader :json))
 
 (defn load-preference [store pref]
@@ -29,8 +32,13 @@
 
 (defn set-preference [pref val]
   (go
-    (let [response (<! (http/get (str api-root "/preferences/set/" pref "/" (url-encode val))))]
+    (let [response (<!
+                     (http/get
+                       (str api-root "/preferences/set/" pref "/" (url-encode val))))]
       (:body response))))
+
+(defn load-button-list []
+  (load-preference keyword-buttons "keyword-button-list"))
 
 (defn load-picture-list [pr]
   (go

@@ -5,6 +5,7 @@
                                                           select-all
                                                           inc-cols
                                                           dec-cols]]
+            [photo-front-end-front.keyword-helper :refer [current-keywords]]
             [photo-front-end-front.export-json :refer [export-json-button]]
             [re-com.core :as re]))
 
@@ -18,6 +19,10 @@
               [re/h-box
                :attr {:id "buttons"}
                :children [[:input {:type "button"
+                                   :id "set-keywords"
+                                   :value "keywords"
+                                   :on-click #(current-keywords)}]
+                          [:input {:type "button"
                                    :id "inc-cols"
                                    :value "<"
                                    :on-click #(dec-cols)}]

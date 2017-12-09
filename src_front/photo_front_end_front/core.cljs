@@ -5,7 +5,8 @@
                                                load-project-list
                                                current-project
                                                selected-tab
-                                               medium-directory]]
+                                               medium-directory
+                                               keyword-buttons]]
             [photo-front-end-front.messages :refer [messages]]
             [photo-front-end-front.pictures :refer [pictures]]
             [photo-front-end-front.projects :as projects]
@@ -18,6 +19,7 @@
 (load-preference current-project "current-project")
 (load-project-list)
 (load-preference medium-directory "medium-directory")
+(load-preference keyword-buttons "keyword-button-list")
 
 (def tabs-definition
   [{:id :projects :label "Projects" :panel projects/panel}

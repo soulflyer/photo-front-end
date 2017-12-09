@@ -40,8 +40,8 @@
                        [:input {:type "button"
                                 :value pr
                                 :id proj
-                                :on-focus #(load-picture-list
-                                             (str yr "/" mo "/" pr))}]]))]]))]]))]]))
+                                :on-focus #(do (load-picture-list
+                                              (str yr "/" mo "/" pr)))}]]))]]))]]))]]))
 
 (defn panel []
   [projects])

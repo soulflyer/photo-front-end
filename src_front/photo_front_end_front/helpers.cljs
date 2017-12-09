@@ -1,5 +1,6 @@
 (ns photo-front-end-front.helpers
-  (:require [clojure.string :refer [join]]))
+  (:require [clojure.string :refer [join
+                                    split]]))
 
 (defn stars [num]
   (join (take num (repeat "*"))))
@@ -48,3 +49,9 @@
        (image-map "Month") "/"
        (image-map "Project") "/"
        (image-map "Version") ".jpg"))
+
+(defn csv [list]
+  (reduce str (interpose "," list)))
+
+(defn un-csv [csvlist]
+  (split csvlist ","))
