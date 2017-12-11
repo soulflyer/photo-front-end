@@ -21,7 +21,12 @@
 (def pic-columns (reagent/atom 4))
 (def current-project (reagent/atom ""))
 (def selected-tab (reagent/atom :projects))
-(def api-root "http://localhost:31000/api")
+
+;;Production API
+(def api-root "http://localhost:31001/api")
+;;Development API
+;;(def api-root "http://localhost:31000/api")
+
 (def keyword-buttons (reagent/atom ["empty"]))
 (def r (json/reader :json))
 

@@ -2,7 +2,8 @@
   (:require [re-com.core :as re]
             [photo-front-end-front.api
              :refer [picture-details
-                     keyword-buttons]]
+                     keyword-buttons
+                     project-message]]
             [photo-front-end-front.keyword-helper
              :refer [project-keywords]]
             [photo-front-end-front.helpers
@@ -15,7 +16,11 @@
     [re/scroller
      :v-scroll :auto
      :child [re/v-box
-             :children (sort (for [kw keyws] [:p kw]))]]))
+             :children (for [kw keyws]
+                         [:input {:type "button"
+                                  :id "xxx"
+                                  :value kw
+                                  :on-click #(reset! project-message kw)}])]]))
 
 (defn panel []
   [keywords])
