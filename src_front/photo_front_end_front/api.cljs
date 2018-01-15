@@ -7,7 +7,8 @@
             [photo-front-end-front.helpers :refer [selected
                                                    image-path
                                                    csv
-                                                   un-csv]]
+                                                   un-csv
+                                                   image-id]]
             [reagent.core :as reagent])
   (:require-macros [cljs.core.async.macros :refer [go]]))
 
@@ -23,7 +24,7 @@
 (def selected-tab (reagent/atom :projects))
 
 ;;Production API
-(def api-root "http://localhost:31001/api")
+(def api-root "http://localhost:31000/api")
 ;;Development API
 ;;(def api-root "http://localhost:31000/api")
 
@@ -86,4 +87,13 @@
                          (str api-root "/open/medium/"
                               (massage-picture-list (selected @picture-list)))))
           resp (:body response)]
-        (reset! project-message resp))))
+      (reset! project-message resp))))
+
+(defn add-keyword [kw]
+  (go
+    (let [response (<! (http/get
+                         (str api-root "/photos/add/keyword/" kw "/"
+                              (massage-picture-list
+                                (map image-id (selected @picture-list))))))
+          resp (:body response)]
+      (reset! project-message (str "**** " resp)))))

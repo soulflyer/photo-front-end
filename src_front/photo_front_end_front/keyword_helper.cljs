@@ -1,5 +1,6 @@
 (ns photo-front-end-front.keyword-helper
-  (:require [photo-front-end-front.api :refer [picture-details]]
+  (:require [photo-front-end-front.api :refer [picture-details
+                                               project-message]]
             [photo-front-end-front.api :refer [load-preference
                                                set-preference
                                                keyword-buttons]]
@@ -13,3 +14,6 @@
 
 (defn current-keywords []
   (reset! keyword-buttons (csv (project-keywords @picture-details))))
+
+;; (defn add-keyword [kw]
+;;   (reset! project-message (str "Adding " kw " to  photos")))
